@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title><!--
+	<link rel="stylesheet" type="text/css" href="../src/reset.css">
+	<link rel="stylesheet" type="text/css" href="lab.css">-->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet"/>
+<div id="app">
+	<img src="map.jpg" :style="`position:absolute;transform: rotate(${rotation}deg);width: 150%;height: 150%;margin-left: -20%;margin-top: -10%;z-index: 9;`"/>
+	<img src="town.png" :style="`position:absolute;width: 100%;height: Auto;z-index: 99;top:50%;`"/>
+</div>
+  <v-app id="inspire">
+    <div >
+      
+    </div>
+
+  </v-app>
+
+
+
+
+<script >
+	let app = new  Vue({
+  el: '#app',
+  data :{
+  	time:0,
+  		 rotation:0,
+  		 speed:250
+      },
+  watch:{  
+				time: function (x) {this.rotation -= 0.1},
+			},
+  methods: {
+   rotateRight() {
+     this.rotation -= 0.05
+   },
+    rotateLeft() {
+     this.rotation += 90
+    }
+  }
+})
+	setTimeout(function timespeed(){
+		if (1) {app.time++;
+				console.log(app.time);
+				setTimeout(timespeed, app.speed);}
+			
+		},app.speed) 
+
+</script>>
+</body>
+</html>

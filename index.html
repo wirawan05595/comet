@@ -15,15 +15,14 @@
  <div>
    
 <div id="app">
-   <button class="button" v-on:click="speedup()" :style="`background-color: white;
-  color: black; border: 10px solid #008CBA;`">
-speed up </button> <!--ปุ่มเร่งความเร็ว-->
-<button class="button" v-on:click="speeddown()" :style="`background-color: white;
-  color: black; border: 10px solid #008CBA;`">
-speed down </button> <!--ปุ่มเร่งความลด-->
-<div v-if="Time_List_Lodestar[0] >=  time ">ดาวหางที่1 จะมาใน {{(Time_List_Lodestar[0]-time)/10}}</div><!--ที่เเสดงรายการดาวหางที่จะมาถึง-->
-	<img src="map.jpg" :style="`position:absolute;transform: rotate(${rotation}deg);width: 150%;height: 150%;margin-left: -20%;margin-top: -10%;z-index: 9;`"/> <!--  ภาพฉากที่เป็นดวงดาว-->
-	<img src="town.png" :style="`position:absolute;width: 100%;height: Auto;z-index: 99;top:50%;`"/> <!--  ภาพฉากที่อยู่หน้าสุด-->
+  <img src="BG.png"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 180%;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
+  <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
+  <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
+  <button class="button" v-on:click="speedup()" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed ;top:80%;left: 50%;`">speed up </button> <!--ปุ่มเร่งความเร็ว-->
+<button class="button" v-on:click="speeddown()" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`">speed down </button> <!--ปุ่มเร่งความลด-->
+<div v-if="Time_List_Lodestar[0] >=  time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;`">ดาวหางที่1 จะมาใน {{(Time_List_Lodestar[0]-time)/10}}</div><!--ที่เเสดงรายการดาวหางที่จะมาถึง-->
+	
+	<!--<img src="town.png" :style="`position:absolute;width: 100%;height: Auto;z-index: 99;top:50%;`"/>   ภาพฉากที่อยู่หน้าสุด-->
   <div v-if="Time_List_Lodestar[0] <=  time " :style="`width: 80px;height: 80px; background-color: #008;transform:translateY(${time}px);`"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป  -->
 </div>
 

@@ -20,10 +20,12 @@
   <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
   <button class="button" v-on:click="speedup()" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed ;top:80%;left: 50%;`">speed up </button> <!--ปุ่มเร่งความเร็ว-->
 <button class="button" v-on:click="speeddown()" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`">speed down </button> <!--ปุ่มเร่งความลด-->
-<div v-if="Time_List_Lodestar[0] >=  time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;`">ดาวหางที่1 จะมาใน {{(Time_List_Lodestar[0]-time)/10}}</div><!--ที่เเสดงรายการดาวหางที่จะมาถึง-->
+<div v-if="Time_List_Lodestar[0] >=  var_time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white;`">ดาวหางที่1 จะมาใน {{Math.floor(Time_List_Lodestar[0]-var_time)}}</div><!--ที่เเสดงรายการดาวหางที่จะมาถึง-->
+<div v-if="Time_List_Lodestar[1] >=  var_time "  :style="` z-index: 4;position: fixed;top:8%;left: 0%;background-color: black;  color: white;`">ดาวหางที่2 จะมาใน {{Math.floor(Time_List_Lodestar[1]-var_time)}}</div>
 	
 	<!--<img src="town.png" :style="`position:absolute;width: 100%;height: Auto;z-index: 99;top:50%;`"/>   ภาพฉากที่อยู่หน้าสุด-->
-  <div v-if="Time_List_Lodestar[0] <=  time " :style="`width: 80px;height: 80px; background-color: #008;transform:translateY(${time}px);`"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป  -->
+  <div v-if="Time_List_Lodestar[0] <=  var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time+250}px, ${var_time}px); border-radius: 40px;`"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   -->
+  <div v-if="Time_List_Lodestar[1] <=  var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time*(-1)+500}px, ${var_time}px); border-radius: 40px;`"></div>
 </div>
 
 </div>
@@ -35,11 +37,12 @@
 	let app = new  Vue({
   el: '#app',
   data :{
-  	time:0, //เก็บค่าเวลา
+  	time:0, 
+    var_time:0,//เก็บค่าเวลา
   		 rotation:0, 
   		 speed:30,//250  //ความเร็วในการลูป
-       speedrotation: 0.1, //ความเร็วในการหมุน
-       Time_List_Lodestar: [100 , 1000]//เก็บเวลาที่ต้องออกของดาวหาง
+       speedrotation: 0.01, //ความเร็วในการหมุน
+       Time_List_Lodestar: [10 , 1000]//เก็บเวลาที่ต้องออกของดาวหาง
 
       },
   watch:{  
@@ -48,18 +51,18 @@
   methods: {
    
     speedup() {
-      if (this.speedrotation <= 10) {this.speedrotation += 0.2;}
+      if (this.speedrotation <= 6) {this.speedrotation += 0.02;}
       console.log(this.speedrotation);
 
     },
   speeddown() {
-      if (this.speedrotation >= 0.4) {this.speedrotation -= 0.2;};
+      if (this.speedrotation >= 0.03) {this.speedrotation -= 0.02;};
       console.log(this.speedrotation);
     }
   }
 })
 	setTimeout(function timespeed(){//ลูป
-		if (1) {app.time++;
+		if (1) {app.time++;app.var_time += app.speedrotation*10 ;
 				//console.log(app.time);
 				setTimeout(timespeed, app.speed);}
 			

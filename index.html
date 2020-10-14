@@ -18,12 +18,12 @@
   <img src="BG.png"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 180%;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
   <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
   <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
-  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white;"> {{gethour()}}:{{getminutes()}} {{getdaytime()}}/{{getmonthtime()}}/{{getyeartime()}} </div>
+  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white;"> {{gethour(start_timer+var_time)}}:{{getminutes(start_timer+var_time)}}:{{getsec(start_timer+var_time)}} {{getdaytime(start_timer+var_time)}}/{{getmonthtime(start_timer+var_time)}}/{{getyeartime(start_timer+var_time)}}   {{getday(start_timer+var_time)}}  </div>
   <!--<button class="button" v-on:click="speedup()" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed ;top:80%;left: 50%;`">speed up </button>  -->   <!--ปุ่มเร่งความเร็ว-->
 <!-- <button class="button" v-on:click="speeddown()" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`">speed down </button>  -->  <!--ปุ่มเร่งความลด-->
-<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`" min="0.01" max="100000" step="0.01" v-model="speedrotation"> 
+<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`" min="1" max="10000000" step="0.1" v-model="speedTimeinput"> 
 <div v-if="Time_List_Lodestar[0] >=  var_time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white;`">ดาวหางที่1 จะมาใน {{Math.floor(Time_List_Lodestar[0]-var_time)}}</div><!--ที่เเสดงรายการดาวหางที่จะมาถึง-->
-<div v-if="Time_List_Lodestar[1] >=  var_time "  :style="` z-index: 4;position: fixed;top:8%;left: 0%;background-color: black;  color: white;`">ดาวหางที่2 จะมาใน {{Math.floor(Time_List_Lodestar[1]-var_time)}} {{time}}, {{start_timer}}</div>
+<div v-if="Time_List_Lodestar[1] >=  var_time "  :style="` z-index: 4;position: fixed;top:8%;left: 0%;background-color: black;  color: white;`">ดาวหางที่2 จะมาใน {{Math.floor(Time_List_Lodestar[1]-var_time)}} , {{start_timer}}</div>
 
 	
 	<!--<img src="town.png" :style="`position:absolute;width: 100%;height: Auto;z-index: 99;top:50%;`"/>   ภาพฉากที่อยู่หน้าสุด-->
@@ -43,20 +43,70 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
 	let app = new  Vue({
   el: '#app',
   data :{
-    //start_timer :Math.floor(start_time/1000+25200+(60*60*24)*49), 
-    start_timer :Math.floor(start_time/1000+25200)  ,
-  	time:start_time, 
+    start_timer :Math.floor(1608854400-(60*60*24)*6),/*(start_time/1000+25200+(60*60*24)*49), */
+    //start_timer :Math.floor(start_time/1000+25200)  ,
+  	time:start_time,
+    speedTimeinput:1,
     var_time:0,//เก็บค่าเวลา
   		 rotation:0, 
-  		 speed:30,//250  //ความเร็วในการลูป
-       speedrotation: 0.01, //ความเร็วในการหมุน
+  		 speedloop:10,//250  //ความเร็วในการลูป  รอบ/วินาที
+       speedTime: 0.01, //ความเร็วเวลาที่อยู่ในลูป  1 วินาที   วินาที/รอบ
+       speedrotation: 0.000001141552511415525 ,//ความเร็วในการหมุน  1 วินาที = 0.000001141552511415525 องศา เพราะ 1 ปี = 360  องศา
        Time_List_Lodestar: [10 , 1000]//เก็บเวลาที่ต้องออกของดาวหาง
 
       },
   watch:{  
-				time: function (x) {this.rotation -= this.speedrotation},//ตัวทำให้หมุน
+				time: function (x) {this.rotation -= this.speedrotation*this.speedTime*this.speedTimeinput; this.rotation %= 360},//ตัวทำให้หมุน
 			},
   methods: {
+    getsec: function(a){return Math.floor((a)%60) },
+    getminutes: function(s){return Math.floor((s)/60%60) },
+    gethour: function(c){return Math.floor((c)/3600%24) },
+    getday: function(v){return Math.floor((v)/(60*60*24)) },
+    getyeartime: function(b){ return Math.floor((this.getday(b)/365.25))+1970 },
+    getmonthtime: function(n){ ans = (this.getday(n)-( Math.floor(this.getday(n)/365.25)*365 + Math.floor(this.getyeartime(n)-1970)/4)   ) ;
+      if (ans - 31 > 0) {ans -= 31; //1
+        if (ans - (28+(this.getyeartime(n)%4 == 0)) > 0) {ans -= (28+(this.getyeartime(n)%4 == 0));
+          if (ans - 31 > 0) {ans -= 31;//3
+            if (ans - 30 > 0) {ans -= 30;//4
+              if (ans - 31 > 0) {ans -= 31;//5
+                if (ans - 30 > 0) {ans -= 30;//6
+                  if (ans - 31 > 0) {ans -= 31;//7
+                    if (ans - 31 > 0) {ans -= 31;//8
+                      if (ans - 30 > 0) {ans -= 30;//9
+                        if (ans - 31 > 0) {ans -= 31;//10
+                          if (ans - 30 > 0) {//11
+                            
+                            return 12//12
+                              
+                            } else {return 11 }
+                          } else {return 10 }
+                        } else {return 9 }
+                      } else {return 8 }
+                    } else {return 7 }
+                  } else {return 6 }
+                } else {return 5 }
+            } else {return 4 }
+          } else {return 3 }
+        } else {return 2 }
+      } else {return 1 }
+     },
+    getdaytime: function(m){ ans_d = (this.getday(m)-( Math.floor(this.getday(m)/365.25)*365 + Math.floor((this.getyeartime(m)-1970)/4))  );
+      if (this.getmonthtime(m) == 1) {return ans_d}
+      if (this.getmonthtime(m) == 2) {return ans_d-31}
+      if (this.getmonthtime(m) == 3) {return ans_d-31 - 28}
+      if (this.getmonthtime(m) == 4) {return ans_d-31*2 - 28}
+      if (this.getmonthtime(m) == 5) {return ans_d-31*2 -30 - 28}
+      if (this.getmonthtime(m) == 6) {return ans_d-31*3 -30 - 28}
+      if (this.getmonthtime(m) == 7) {return ans_d-31*3 -30*2 - 28}
+      if (this.getmonthtime(m) == 8) {return ans_d-31*4 -30*2 - 28}
+      if (this.getmonthtime(m) == 9) {return ans_d-31*5 -30*2 - 28}
+      if (this.getmonthtime(m) == 10) {return ans_d-31*5 -30*3 - 28}
+      if (this.getmonthtime(m) == 11) {return ans_d-31*6 -30*3 - 28}
+      if (this.getmonthtime(m) == 12) {return ans_d-31*6 -30*4 - 28}
+
+    },
+/*    getsec: function(){return Math.floor((this.start_timer+this.var_time)%60) },
     getminutes: function(){return Math.floor((this.start_timer+this.var_time)/60%60) },
     gethour: function(){return Math.floor((this.start_timer+this.var_time)/3600%24) },
     getday: function(){return Math.floor((this.start_timer+this.var_time)/(60*60*24)) },
@@ -102,25 +152,25 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
       if (this.getmonthtime() == 11) {return ans_d-31*6 -30*3 - 28}
       if (this.getmonthtime() == 12) {return ans_d-31*6 -30*4 - 28}
 
-    },
+    },*/
 
     speedup() {
-      if (this.speedrotation <= 6) {this.speedrotation += 0.02;}
-      console.log(this.speedrotation);
+      if (this.speedTime <= 6) {this.speedTime += 0.02;}
+      console.log(this.speedTime);
 
     },
   speeddown() {
-      if (this.speedrotation >= 0.03) {this.speedrotation -= 0.02;};
-      console.log(this.speedrotation);
+      if (this.speedTime >= 0.03) {this.speedTime -= 0.02;};
+      console.log(this.speedTime);
     }
   }
 })
-	setTimeout(function timespeed(){//ลูป
-		if (1) {app.time++;app.var_time += app.speedrotation*10 ;
+	setInterval(function timespeed(){//ลูป
+		if (1) {app.time++;app.var_time += app.speedTime*app.speedTimeinput ;
 				//console.log(app.time);
-				setTimeout(timespeed, app.speed);}
+				}
 			
-		},app.speed) 
+		},app.speedloop) 
 
 </script>>
 </body>

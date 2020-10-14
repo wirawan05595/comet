@@ -1,0 +1,55 @@
+.FG1{ 
+	z-index: 3;
+	top: -10%;left: -18%;
+	position: fixed;
+	opacity: 0.7;
+}
+
+.FG2{
+	z-index: 3; 
+	top: -10%;
+	right: -25%;
+	position: fixed;
+	opacity: 0.7;
+}
+.BG{
+	transform: rotate(${rotation}deg);
+	position: fixed;
+	width: 180%;
+	top: -50%;
+	left: -40%;
+}
+.Display_time{
+	z-index: 4;
+	position: fixed;
+	top:75%;
+	left: 50%;
+	background-color: black;
+	color: white;
+}
+.input_range {
+	background-color: white;
+	color: black;
+	border: 10px solid #008CBA;
+	 z-index: 4;
+	 position: fixed;
+	 top:80%;
+	 left: 40%;
+	}
+.Display_info_comet{
+	z-index: 4;
+	position: fixed;
+	top:5%;
+	left: 0%;
+	background-color: black;
+}
+.div_txt_info_comet{ 
+	color: white;
+}
+.comet{
+	width: 10px;
+	height: 10px;
+	background-color: #fff;
+	border-radius: 40px;
+	transform:translate(${var_time+250}px, ${var_time}px);
+}

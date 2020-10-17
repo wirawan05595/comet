@@ -10,30 +10,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href="style.css">
 
 
  <div>
    
 <div id="app">
-  <img src="BG.png" class="BG"   /> <!--  ภาพฉากที่เป็นดวงดาว-->
-  <img src="vbvb.png" class="FG1" /> 
-  <img src="vbvb2.png" class="FG2"/> 
-  <div class="Display_time"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}   </div>
+  <img src="BG.png"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 180%;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
+  <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
+  <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
+  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}   </div>
 
-<input type="range" class="input_range" min="1" max="100000000" step="0.1" v-model="speedTimeinput">  <!-- ที่เร่งความเร็ว -->
-<div class="Display_info_comet" >
-  <div v-for="(item,index) in List_Lodestar_Time "  > 
-    <div  v-if="item >=  start_timer+var_time "  class="div_txt_info_comet">
-     ดาวหาง{{List_Lodestar_name[index]}} จะมาในวันที่ {{TimeStrFormat(item)}}</div> 
-   
-    <div v-if="List_Lodestar_Time[index] <=  start_timer+var_time " class="comet"  ></div><!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   -->
-  </div> 
-</div>
+<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`" min="1" max="1000000000" step="0.1" v-model="speedTimeinput"> 
+<div v-for="(item,index) in List_Lodestar_Time "  > <div  v-if="item >=  start_timer+var_time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white;`">  ดาวหาง{{List_Lodestar_name[index]}} จะมาในวันที่ {{TimeStrFormat(item)}}</div> </div>
 
-	<!--<img src="town.png" :style="`position:absolute;width: 100%;height: Auto;z-index: 99;top:50%;`"/>   ภาพฉากที่อยู่หน้าสุด-->
- 
-
+  <div v-if="List_Lodestar_name[0] <=  start_timer+var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time+250}px, ${var_time}px); border-radius: 40px;`"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   -->
+  <div v-if="List_Lodestar_name[1] <=  start_timer+var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time*(-1)+500}px, ${var_time}px); border-radius: 40px;`"></div>
 </div>
 
 </div>
@@ -45,16 +36,16 @@
 var d = new Date(); 
 var start_time = d.getTime();//Return the number of milliseconds since 1970/01/01:
 
-	let app = new  Vue({
+  let app = new  Vue({
   el: '#app',
   data :{
     //start_timer :Math.floor(1608854400-(60*60*24)*6),/*(start_time/1000+25200+(60*60*24)*49), */
     start_timer :Math.floor(start_time/1000+25200)  ,
-  	time:start_time,
+    time:start_time,
     speedTimeinput:1,
     var_time:0,//เก็บค่าเวลา
-  		 rotation:0, 
-  		 speedloop:10,//250  //ความเร็วในการลูป  รอบ/วินาที
+       rotation:0, 
+       speedloop:10,//250  //ความเร็วในการลูป  รอบ/วินาที
        speedTime: 0.01, //ความเร็วเวลาที่อยู่ในลูป  1 วินาที   วินาที/รอบ
        speedrotation: 0.000001141552511415525 ,//ความเร็วในการหมุน  1 วินาที = 0.000001141552511415525 องศา เพราะ 1 ปี = 360  องศา
        //List_Lodestar_Time: [start_time/1000+25200+80000 , start_time/1000+25200]
@@ -65,8 +56,8 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
        List_Lodestar_Orbit: [90000000 , 200000], //รอบโคจร
       },
   watch:{  
-				time: function (x) {this.rotation -= this.speedrotation*this.speedTime*this.speedTimeinput; this.rotation %= 360},//ตัวทำให้หมุน
-			},
+        time: function (x) {this.rotation -= this.speedrotation*this.speedTime*this.speedTimeinput; this.rotation %= 360},//ตัวทำให้หมุน
+      },
   methods: {
     getsec: function(a){return Math.floor((a)%60) },
     getminutes: function(s){return Math.floor((s)/60%60) },
@@ -135,10 +126,10 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
   }
 })
 var checkOrbitLodestar = 0;
-	setInterval(function timespeed(){//ลูป
-		if (1) {app.time++;app.var_time += app.speedTime*app.speedTimeinput ;
+  setInterval(function timespeed(){//ลูป
+    if (1) {app.time++;app.var_time += app.speedTime*app.speedTimeinput ;
       checkOrbitLodestar +=app.speedTime*app.speedTimeinput ;
-				//console.log(app.time);
+        //console.log(app.time);
         if (checkOrbitLodestar /2592000 > 1 ) {
           checkOrbitLodestar = 0;
           for (var i = 0; i < app.List_Lodestar_Time.length; i++) {
@@ -146,9 +137,10 @@ var checkOrbitLodestar = 0;
           }
         
         }
-		}
-			
-		},app.speedloop) 
+    }
+      
+    },app.speedloop) 
+
 
 </script>>
 </body>

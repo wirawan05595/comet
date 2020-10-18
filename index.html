@@ -4,12 +4,14 @@
 	<title></title><!--
 	<link rel="stylesheet" type="text/css" href="../src/reset.css">
 	<link rel="stylesheet" type="text/css" href="lab.css">-->
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+
 
 
  <div>
@@ -18,12 +20,14 @@
   <img src="BG.png"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 180%;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
   <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
   <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
-  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}   </div>
+  
+  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}   </div>
 
 <input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`" min="1" max="1000000000" step="0.1" v-model="speedTimeinput"> 
-<div v-for="(item,index) in List_Lodestar_Time "  > <div  v-if="item >=  start_timer+var_time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white;`">  ดาวหาง{{List_Lodestar_name[index]}} จะมาในวันที่ {{TimeStrFormat(item)}}</div> </div>
 
-  <div v-if="List_Lodestar_name[0] <=  start_timer+var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time+250}px, ${var_time}px); border-radius: 40px;`"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   -->
+<div v-for="(item,index) in List_Lodestar_Time "  > <div  v-if="item >=  start_timer+var_time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white; font-family: 'Kanit', sans-serif; `">  ดาวหาง{{List_Lodestar_name[index]}} จะมาในวันที่ {{TimeStrFormat(item)}}</div> </div>
+
+  <div v-if="List_Lodestar_name[0] <=  start_timer+var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time+250}px, ${var_time}px); border-radius: 40px; `"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   -->
   <div v-if="List_Lodestar_name[1] <=  start_timer+var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time*(-1)+500}px, ${var_time}px); border-radius: 40px;`"></div>
 </div>
 

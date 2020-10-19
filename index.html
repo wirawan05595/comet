@@ -11,8 +11,10 @@
 <script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+
 <style>
-  .text{ 
+
+  .textA{ 
     position: fixed;
     left: 35%;
     font-size: 25px;
@@ -24,29 +26,29 @@
 
   @-webkit-keyframes neon {
     from {
+      opacity: 0.5;
       text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #6666CC, 0 0 70px #FFFF99, 0 0 80px #FFFF99, 0 0 100px #FFFF99, 0 0 150px #FFFF99;
     }
     to {
+      opacity: 1;
       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #6666CC, 0 0 35px #FFFF99, 0 0 40px #FFFF99, 0 0 50px #FFFF99, 0 0 75px #FFFF99;
     }
     }
 </style>
 
-
-
  <div>
    
 <div id="app">
-  <img src="BG.jpg"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 200%;height:350% ;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
+  <img src="BG.jpg"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 200%;height:350%;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
   <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
   <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
   
-  <div  style=" z-index: 4;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  {{speedTimeoutput}}  </div>
+  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  {{speedTimeoutput}}  </div>
 
-<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="100000000" step="1" v-model="speedTimeinput"> 
+<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
 
-<div :style="` z-index: 4;position: fixed;  color: white; font-family: 'Kanit', sans-serif; `">
-  <div class="text" v-for="(item,index) in lodestar "   > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
+<div :style="` z-index: 4; color: white; font-family: 'Kanit', sans-serif; `">
+  <div v-for="(item,index) in lodestar "    > <div class="textA" v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
 </div>
     <!-- <div >
       <div v-for="(item,index) in message"    >

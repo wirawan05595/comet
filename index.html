@@ -23,7 +23,7 @@
   
   <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  {{speedTimeoutput}}  </div>
 
-<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
+<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="100000000" step="1" v-model="speedTimeinput"> 
 
 <div :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white; font-family: 'Kanit', sans-serif; `">
   <div v-for="(item,index) in lodestar "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>

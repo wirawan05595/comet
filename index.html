@@ -48,6 +48,9 @@
   .range {
         -webkit-appearance: none;
         -moz-appearance: none;
+        -webkit-animation: textBB 2s ease-in-out ;
+        -moz-animation: textBB 2s ease-in-out ;
+        animation: textBB 2s ease-in-out ;
         }
         input[type=range]::-webkit-slider-runnable-track {
         -webkit-appearance: none;
@@ -186,7 +189,7 @@
   
   <div  class="textB" style=" z-index: 4;position: fixed;top:75%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-size: 20px;  color: #FFCC33; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  {{speedTimeoutput}}  </div>
 
-<input type="range" class="range blue" :style="`z-index: 4;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
+<input  type="range" class="range blue" :style="`z-index: 4;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
 
 <div  class="textA" >
   <div v-for="(item,index) in even(lodestar) "    > <div  v-if="item.Time >=  start_timer+var_time " class="textB">  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>

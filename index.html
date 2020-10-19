@@ -21,7 +21,7 @@
     -webkit-animation: neon 1.5s ease-in-out infinite alternate;
     -moz-animation: neon 1.5s ease-in-out infinite alternate;
     animation: neon 1.5s ease-in-out infinite alternate;
-    
+     z-index: 4; color: white; font-family: 'Kanit', sans-serif;
   }
 
   @-webkit-keyframes neon {
@@ -47,8 +47,8 @@
 
 <input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
 
-<div :style="` z-index: 4; color: white; font-family: 'Kanit', sans-serif; `">
-  <div v-for="(item,index) in lodestar "    > <div class="textA" v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
+<div  class="textA" >
+  <div v-for="(item,index) in lodestar "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
 </div>
 
 <div >

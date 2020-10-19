@@ -172,9 +172,15 @@
 </div>
 <div >
   
-  <div v-for="(item,index) in lodestar "    >  <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer " :style="`width: 150px;height: 150px; background-color: #fff;transform:translate(${((start_timer+var_time)-item.Time)*item.x}px, ${((start_timer+var_time)-item.Time)*item.y}px); border-radius: 40px;`"></div></div> 
+  <div v-for="(item,index) in lodestar "    >
+    <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer "  :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x}px, ${((start_timer+var_time)-item.Time)*item.y}px);`"  >
+          <div  :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, yellow 30%, red 90%);`">
+         <div :style="`position:absolute; top: 8vh;  left: 2vh;   height: 10vh;  width: 10vh;  background-color: #727272;  border-radius: 50%;  overflow:hidden;z-index: 10; `"></div></div>
+    </div>
+  </div> 
 </div>
 
+<div style=";"  ></div>
 
   <div style=" z-index: 4; margin: 0; position: fixed;text-align: center; color: #FFCC33;top:82%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-family: 'Kanit', sans-serif; border:#fff 1px ;"  >
     <div v-for="(item,index) in message"    > <div  v-if="item.time <=  var_time  && item.time+100000 >=  var_time" >  {{item.txt}}</div> </div>

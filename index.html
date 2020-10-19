@@ -21,16 +21,27 @@
   <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
   <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
   
-  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}   </div>
+  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  {{speedTimeoutput}}  </div>
 
-<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%;`" min="1" max="1000000000" step="0.1" v-model="speedTimeinput"> 
+<input type="range" :style="`background-color: white; color: black; border: 10px solid #008CBA; z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
 
-<div v-for="(item,index) in List_Lodestar_Time "  > <div  v-if="item >=  start_timer+var_time "  :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white; font-family: 'Kanit', sans-serif; `">  ดาวหาง{{List_Lodestar_name[index]}} จะมาในวันที่ {{TimeStrFormat(item)}}</div> </div>
-
-  <div v-if="List_Lodestar_name[0] <=  start_timer+var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time+250}px, ${var_time}px); border-radius: 40px; `"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   -->
-  <div v-if="List_Lodestar_name[1] <=  start_timer+var_time " :style="`width: 10px;height: 10px; background-color: #fff;transform:translate(${var_time*(-1)+500}px, ${var_time}px); border-radius: 40px;`"></div>
+<div :style="` z-index: 4;position: fixed;top:5%;left: 0%;background-color: black;  color: white; font-family: 'Kanit', sans-serif; `">
+  <div v-for="(item,index) in lodestar "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
 </div>
+    <!-- <div >
+      <div v-for="(item,index) in message"    >
+         <div v-if="item.Time <=  start_timer+var_time " :style="`width: 150px;height: 150px; background-color: #fff;transform:translate(${var_time*item.x*0.01+250}px, ${var_time*item.y*0.01}px); border-radius: 40px; `"></div>  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   
+      </div>
+    </div> -->
 
+  <div v-if="lodestar[0].Time <=  start_timer+var_time  " :style="`width: 150px;height: 150px; background-color: #fff;transform:translate(${var_time+250}px, ${var_time}px); border-radius: 40px;`"></div> <!--  ดาวหางต้นเเบบที่ยังไม่เสร็จ เหลือ -ความเร็วสัมพันธ์กับเวลา -เวลาที่ต้องหายไป   -->
+  <div v-if="lodestar[1].Time <=  start_timer+var_time " :style="`width: 150px;height: 150px; background-color: #fff;transform:translate(${var_time*(-1)+500}px, ${var_time}px); border-radius: 40px;`"></div>
+  <div style=" z-index: 4;position: fixed;background-color: black;  color: white;top:75%; font-family: 'Kanit', sans-serif;"  >
+    <div v-for="(item,index) in message"    > <div  v-if="item.time <=  var_time  && item.time+100000 >=  var_time" >  {{item.txt}}</div> </div>
+  </div>
+</div>
+ 
+</div>
 </div>
 
 
@@ -47,20 +58,23 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
     start_timer :Math.floor(start_time/1000+25200)  ,
     time:start_time,
     speedTimeinput:1,
+    speedTimeoutput:1,
     var_time:0,//เก็บค่าเวลา
        rotation:0, 
        speedloop:10,//250  //ความเร็วในการลูป  รอบ/วินาที
        speedTime: 0.01, //ความเร็วเวลาที่อยู่ในลูป  1 วินาที   วินาที/รอบ
        speedrotation: 0.000001141552511415525 ,//ความเร็วในการหมุน  1 วินาที = 0.000001141552511415525 องศา เพราะ 1 ปี = 360  องศา
-       //List_Lodestar_Time: [start_time/1000+25200+80000 , start_time/1000+25200]
-       List_Lodestar_Time: [1608054400 , 1608854400],//เก็บเวลาที่ต้องออกของดาวหาง เป็นเวลาที่เริ่มนับตั้งเเต่ 1/1/1970 หน่อยเป็น milliseconds
-       List_Lodestar_name: [1 , 2], //ชื่อดาวหาง
-       List_Lodestar_X: [1 , 2], //การเคลื่อนที่ในเเนวเเกน X
-       List_Lodestar_Y: [1 , 2], //การเคลื่อนที่ในเเนวเเกน Y
-       List_Lodestar_Orbit: [90000000 , 200000], //รอบโคจร
+       
+       lodestar:[{name:"แอตลาส" /*ชื่อดาวหาง*/, Time:(start_time/1000+3000 )/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 1 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit: 31536000/*รอบโคจร*/},
+       {name:"แอตลาส", Time:(start_time/1000+604800) , x: 1, y: 1 , Orbit: 61579000}
+     ],
+
+       message: [{txt:'สวัสดีผู้เริ่มต้น ถ้าคุณรู้สึกว่าเวลามันผ่านไปอย่างๆช้าๆมันช่างน่าเบื่อ คุณลองเลื่อนเเทบด้านลองเพิ่อเร่งเวลาดูสิ',time:-10000},{txt:'เวลาจะผ่านไปเร็วขึ้น เเต่ทุกสิ่งก็จะเร็วไปตามเวลาเช่นกัน',time:-10000},{txt:'สอง',time:50000}
+       ,{txt:'สาม',time:6000000}],
       },
   watch:{  
-        time: function (x) {this.rotation -= this.speedrotation*this.speedTime*this.speedTimeinput; this.rotation %= 360},//ตัวทำให้หมุน
+        time: function (x) {this.rotation -= this.speedrotation*this.speedTime*this.speedTimeoutput; this.rotation %= 360},//ตัวทำให้หมุน
+        speedTimeinput: function(x) {if (this.speedTimeinput <= 600000) {this.speedTimeoutput = this.speedTimeinput /2} else {this.speedTimeoutput = this.speedTimeinput *10}},
       },
   methods: {
     getsec: function(a){return Math.floor((a)%60) },
@@ -131,13 +145,13 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
 })
 var checkOrbitLodestar = 0;
   setInterval(function timespeed(){//ลูป
-    if (1) {app.time++;app.var_time += app.speedTime*app.speedTimeinput ;
-      checkOrbitLodestar +=app.speedTime*app.speedTimeinput ;
+    if (1) {app.time++;app.var_time += app.speedTime*app.speedTimeoutput ;
+      checkOrbitLodestar +=app.speedTime*app.speedTimeoutput ;
         //console.log(app.time);
         if (checkOrbitLodestar /2592000 > 1 ) {
           checkOrbitLodestar = 0;
-          for (var i = 0; i < app.List_Lodestar_Time.length; i++) {
-            if (app.List_Lodestar_Time[i] < app.var_time+ app.start_timer) {app.List_Lodestar_Time[i] += app.List_Lodestar_Orbit[i]} 
+          for (var i = 0; i < app.lodestar.length; i++) {
+            if (app.lodestar[i].Time < app.var_time+ app.start_timer) {app.lodestar[i].Time += app.lodestar[i].Orbit} 
           }
         
         }

@@ -23,7 +23,7 @@
     font-size: 15px;
     z-index: 200000;
     color: #fff;
-    opacity: 0.5;
+    opacity: 0.8;
    top: 5%;
   }
   .textA:hover{ 
@@ -48,9 +48,9 @@
   .range {
         -webkit-appearance: none;
         -moz-appearance: none;
-        -webkit-animation: textBB 2s ease-in-out ;
-        -moz-animation: textBB 2s ease-in-out ;
-        animation: textBB 2s ease-in-out ;
+        -webkit-animation: textBB 2s ;
+        -moz-animation: textBB 2s  ;
+        animation: textBB 2s ;
         }
         input[type=range]::-webkit-slider-runnable-track {
         -webkit-appearance: none;
@@ -159,9 +159,11 @@
 
   @-webkit-keyframes neon {
     from {
+      opacity: 0.8;
       text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #6666CC, 0 0 70px #FFFF99, 0 0 80px #FFFF99, 0 0 100px #FFFF99, 0 0 150px #FFFF99;
     }
     to {
+      opacity: 1;
       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #6666CC, 0 0 35px #FFFF99, 0 0 40px #FFFF99, 0 0 50px #FFFF99, 0 0 75px #FFFF99;
     }
     }

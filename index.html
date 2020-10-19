@@ -168,7 +168,7 @@
 <input type="range" class="range blue" :style="`z-index: 4;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
 
 <div  class="textA" >
-  <div v-for="(item,index) in lodestar "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
+  <div v-for="(item,index) in even(lodestar) "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
 </div>
 <div >
   <div v-for="(item,index) in lodestar "    >  <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer " :style="`width: 150px;height: 150px; background-color: #fff;transform:translate(${((start_timer+var_time)-item.Time)*item.x}px, ${((start_timer+var_time)-item.Time)*item.y}px); border-radius: 40px;`"></div></div> 
@@ -289,6 +289,12 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
   speeddown() {
       if (this.speedTime >= 0.03) {this.speedTime -= 0.02;};
       console.log(this.speedTime);
+    },
+    even: function(arr) {
+      // Set slice() to avoid to generate an infinite loop!
+      return arr.slice().sort(function(a, b) {
+        return a.Time - b.Time;
+      });
     }
   }
 })

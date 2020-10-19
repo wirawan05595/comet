@@ -163,12 +163,12 @@
   <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
   <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
   
-  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  {{speedTimeoutput}}  </div>
+  <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}} </div>
 
 <input type="range" class="range blue" :style="`z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
 
 <div  class="textA" >
-  <div v-for="(item,index) in lodestar "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
+  <div v-for="(item,index) in even(lodestar) "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
 </div>
 <div >
   <div v-for="(item,index) in lodestar "    >  <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer " :style="`width: 150px;height: 150px; background-color: #fff;transform:translate(${((start_timer+var_time)-item.Time)*item.x}px, ${((start_timer+var_time)-item.Time)*item.y}px); border-radius: 40px;`"></div></div> 
@@ -290,6 +290,12 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
   speeddown() {
       if (this.speedTime >= 0.03) {this.speedTime -= 0.02;};
       console.log(this.speedTime);
+    },
+    even: function(arr) {
+      // Set slice() to avoid to generate an infinite loop!
+      return arr.slice().sort(function(a, b) {
+        return a.Time - b.Time;
+      });
     }
   }
 })

@@ -94,7 +94,10 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
       },
   watch:{  
         time: function (x) {this.rotation -= this.speedrotation*this.speedTime*this.speedTimeoutput; this.rotation %= 360},//ตัวทำให้หมุน
-        speedTimeinput: function(x) {if (this.speedTimeinput <= 600000) {this.speedTimeoutput = this.speedTimeinput /2} else {this.speedTimeoutput = this.speedTimeinput *10}},
+        speedTimeinput: function(x) {if (this.speedTimeinput <= 300000 ) {this.speedTimeoutput = this.speedTimeinput } 
+        else if (this.speedTimeinput <= 600000) {this.speedTimeoutput = this.speedTimeinput*50 } 
+       /* else if (this.speedTimeinput == 1000000) {this.speedTimeoutput = this.speedTimeinput**2 } */
+        else {this.speedTimeoutput = this.speedTimeinput*100}},
       },
   methods: {
     getsec: function(a){return Math.floor((a)%60) },

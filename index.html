@@ -91,7 +91,6 @@
         width: 25px;
         max-width: 80px;
         position: relative;
-        bottom: 11px;
         opacity: 0.5;
         background-color: #fff;
         cursor: -moz-grab;
@@ -161,11 +160,12 @@
 <div id="app">
 <img src="BG.jpg"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 200%;height:350%;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
   <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
-  <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/> 
+  <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/>
+  <img src="clipart4139313.png"  :style="`position: fixed; z-index: 4; align: bottom; width:100%; height:100%;`"/>
   
   <div  style=" z-index: 4;position: fixed;top:75%;left: 50%;`background-color: black;  color: white; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}} </div>
 
-<input type="range" class="range blue" :style="`z-index: 4;position: fixed;top:80%;left: 40%; width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
+<input type="range" class="range blue" :style="`z-index: 4;position: fixed;top:90%;left: 38%; width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
 
 <div  class="textA" >
   <div v-for="(item,index) in even(lodestar) "    > <div  v-if="item.Time >=  start_timer+var_time " >  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
@@ -175,7 +175,7 @@
 </div>
 
 
-  <div style=" z-index: 4;position: fixed;background-color: black;  color: white;top:75%; font-family: 'Kanit', sans-serif;"  >
+  <div style=" z-index: 4;position: fixed;text-align: center; color: #FFCC33;top:80%;left: 35%; font-family: 'Kanit', sans-serif; border:#fff 1px ;"  >
     <div v-for="(item,index) in message"    > <div  v-if="item.time <=  var_time  && item.time+100000 >=  var_time" >  {{item.txt}}</div> </div>
   </div>
 </div>
@@ -211,8 +211,7 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
        {name:"เวสต์", Time:(start_time/1000+3155400*452) , x: 0.5, y: 1 , Orbit: 3153600*42,sX:125}
      ],
 
-
-       message: [{txt:'สวัสดีผู้เริ่มต้น ถ้าคุณรู้สึกว่าเวลามันผ่านไปอย่างๆช้าๆมันช่างน่าเบื่อ คุณลองเลื่อนเเทบด้านลองเพิ่อเร่งเวลาดูสิ',time:-10000},{txt:'เวลาจะผ่านไปเร็วขึ้น เเต่ทุกสิ่งก็จะเร็วไปตามเวลาเช่นกัน',time:-10000},{txt:'ดาวหางแอตลาสจะไม่โคจรมาซ้ำรอบในช่วงชีวิตมนุษย์ เพราะต้องใช้เวลาโคจร 5500 ปี ',time:50000}
+      message: [{txt:'สวัสดีผู้เริ่มต้น ถ้าคุณรู้สึกว่าเวลามันผ่านไปอย่างๆช้าๆมันช่างน่าเบื่อ คุณลองเลื่อนเเทบด้านลองเพิ่อเร่งเวลาดูสิ',time:-10000},{txt:'เวลาจะผ่านไปเร็วขึ้น เเต่ทุกสิ่งก็จะเร็วไปตามเวลาเช่นกัน',time:-10000},{txt:'ดาวหางแอตลาสจะไม่โคจรมาซ้ำรอบในช่วงชีวิตมนุษย์ เพราะต้องใช้เวลาโคจร 5500 ปี ',time:50000}
        ,{txt:'กฎของ​เวลา​ คือ… มันจะไม่ย้อนกลับ',time:200000} ,{txt:'เราวิ่งไล่ตามไปกับ เวลา แต่เวลามักนำหน้าเราเสมอ',time:500000},{txt:'ดาวหางแอตลาสถูกค้นพบเมื่อวันที่ 28 ธันวาคม พ.ศ. 2562',time:1000000},{txt:'ดาวหางเข้าใกล้ดวงอาทิตย์มากเท่าใด ก็จะยิ่งสว่างมากขึ้น',time:4000000}],
 
        message: [{txt:'สวัสดีผู้เริ่มต้น ถ้าคุณรู้สึกว่าเวลามันผ่านไปอย่างๆช้าๆมันช่างน่าเบื่อ คุณลองเลื่อนเเทบด้านลองเพิ่อเร่งเวลาดูสิ',time:-10000},{txt:'เวลาจะผ่านไปเร็วขึ้น เเต่ทุกสิ่งก็จะเร็วไปตามเวลาเช่นกัน',time:-10000},{txt:'ตามจริงเเล้ว ดาวหางแอตลาสจะไม่โคจรมาซ้ำรอบในช่วงชีวิตมนุษย์ ',time:50000}

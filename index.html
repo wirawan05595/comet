@@ -33,6 +33,13 @@
 
      z-index: 4; color: white; font-family: 'Kanit', sans-serif;
   }
+  .textB{
+    -webkit-animation: textBB 2s ease-in-out ;
+    -moz-animation: textBB 2s ease-in-out ;
+    animation: textBB 2s ease-in-out ;
+
+
+  }
   .textB:hover{ 
     -webkit-animation: neon 1.5s ease-in-out infinite alternate;
     -moz-animation: neon 1.5s ease-in-out infinite alternate;
@@ -156,6 +163,15 @@
       opacity: 1;
       text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #6666CC, 0 0 35px #FFFF99, 0 0 40px #FFFF99, 0 0 50px #FFFF99, 0 0 75px #FFFF99;
     }
+    }
+
+    @-webkit-keyframes textBB {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
 </style>

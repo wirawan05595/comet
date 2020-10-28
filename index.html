@@ -1,348 +1,529 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title><!--
+  <title></title>
+  <!--
 	<link rel="stylesheet" type="text/css" href="../src/reset.css">
 	<link rel="stylesheet" type="text/css" href="lab.css">-->
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+  integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+  integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+  integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet" href="detail.css">
+<script src="java.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
 
-<style>
-  body{
-    font-family: 'Kanit', sans-serif;
-  }
+  <style>
+    body {
+      font-family: 'Kanit', sans-serif;
+    }
 
-  .textA{ 
-    position: fixed;
-    left: 5%;
-    font-size: 15px;
-    z-index: 200000;
-    color: #fff;
-    opacity: 0.8;
-   top: 5%;
-  }
-  .textA:hover{ 
-    -webkit-animation: neon 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon 1.5s ease-in-out infinite alternate;
-    animation: neon 1.5s ease-in-out infinite alternate;
-
-     z-index: 4; color: white; font-family: 'Kanit', sans-serif;
-  }
-  .textB{
-    -webkit-animation: textBB 2s ease-in-out ;
-    -moz-animation: textBB 2s ease-in-out ;
-    animation: textBB 2s ease-in-out ;
-
-
-  }
-  .textB:hover{ 
-    -webkit-animation: neon 1.5s ease-in-out infinite alternate;
-    -moz-animation: neon 1.5s ease-in-out infinite alternate;
-    animation: neon 1.5s ease-in-out infinite alternate;
-  }
-  .range {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -webkit-animation: textBB 2s ;
-        -moz-animation: textBB 2s  ;
-        animation: textBB 2s ;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-        -webkit-appearance: none;
-        background: rgba(59,173,227,1);
-        background: -moz-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59,173,227,1)), color-stop(25%, rgba(87,111,230,1)), color-stop(51%, rgba(152,68,183,1)), color-stop(100%, rgba(255,53,127,1)));
-        background: -webkit-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: -o-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: -ms-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1 );
-        height: 2px;
-      }
-      
-      input[type=range]:focus {
-        outline: none;
-      }
-      
-      input[type=range]::-moz-range-track {
-        -moz-appearance: none;
-        background: rgba(59,173,227,1);
-        background: -moz-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59,173,227,1)), color-stop(25%, rgba(87,111,230,1)), color-stop(51%, rgba(152,68,183,1)), color-stop(100%, rgba(255,53,127,1)));
-        background: -webkit-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: -o-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: -ms-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        background: linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1 );
-        height: 2px;
-      }
-      
-      input[type=range]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        border: 2px solid;
-        border-radius: 50%;
-        height: 25px;
-        width: 25px;
-        max-width: 80px;
-        position: relative;
-        bottom: 11px;
-        background-image: #fff;
-        cursor: -webkit-grab;
-        opacity: 0.5;
-        -webkit-transition: border 1000ms ease;
-        transition: border 1000ms ease;
-      }
-      
-      input[type=range]::-moz-range-thumb {
-        -moz-appearance: none;
-        border: 2px solid;
-        border-radius: 50%;
-        height: 25px;
-        width: 25px;
-        max-width: 80px;
-        position: relative;
-        opacity: 0.5;
-        background-color: #fff;
-        cursor: -moz-grab;
-        -moz-transition: border 1000ms ease;
-        transition: border 1000ms ease;
-      }
-      
-      
-      
-      .range.blue::-webkit-slider-thumb {
-         border-color: rgb(59,173,227);
-      }
-      
-      .range.ltpurple::-webkit-slider-thumb {
-         border-color: rgb(87,111,230);
-      }
-      
-      .range.purple::-webkit-slider-thumb {
-         border-color: rgb(152,68,183);
-      }
-      
-      .range.pink::-webkit-slider-thumb {
-         border-color: rgb(255,53,127);
-      }
-      
-      .range.blue::-moz-range-thumb {
-         border-color: rgb(59,173,227);
-      }
-      
-      .range.ltpurple::-moz-range-thumb {
-         border-color: rgb(87,111,230);
-      }
-      
-      .range.purple::-moz-range-thumb {
-         border-color: rgb(152,68,183);
-      }
-      
-      .range.pink::-moz-range-thumb {
-         border-color: rgb(255,53,127);
-      }
-      
-      input[type=range]::-webkit-slider-thumb:active {
-        cursor: -webkit-grabbing;
-      }
-      
-      input[type=range]::-moz-range-thumb:active {
-        cursor: -moz-grabbing;
-      }
-      
-
-
-  @-webkit-keyframes neon {
-    from {
+    .textA {
+      position: fixed;
+      left: 5%;
+      font-size: 15px;
+      z-index: 200000;
+      color: #fff;
       opacity: 0.8;
-      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #6666CC, 0 0 70px #FFFF99, 0 0 80px #FFFF99, 0 0 100px #FFFF99, 0 0 150px #FFFF99;
+      top: 5%;
     }
-    to {
-      opacity: 1;
-      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #6666CC, 0 0 35px #FFFF99, 0 0 40px #FFFF99, 0 0 50px #FFFF99, 0 0 75px #FFFF99;
+
+    .textA:hover {
+      -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+      -moz-animation: neon 1.5s ease-in-out infinite alternate;
+      animation: neon 1.5s ease-in-out infinite alternate;
+
+      z-index: 4;
+      color: white;
+      font-family: 'Kanit', sans-serif;
     }
+
+    .textB {
+      -webkit-animation: textBB 2s ease-in-out;
+      -moz-animation: textBB 2s ease-in-out;
+      animation: textBB 2s ease-in-out;
+
+
+    }
+
+    .textB:hover {
+      -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+      -moz-animation: neon 1.5s ease-in-out infinite alternate;
+      animation: neon 1.5s ease-in-out infinite alternate;
+    }
+
+    .range {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -webkit-animation: textBB 2s;
+      -moz-animation: textBB 2s;
+      animation: textBB 2s;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      background: rgba(59, 173, 227, 1);
+      background: -moz-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59, 173, 227, 1)), color-stop(25%, rgba(87, 111, 230, 1)), color-stop(51%, rgba(152, 68, 183, 1)), color-stop(100%, rgba(255, 53, 127, 1)));
+      background: -webkit-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: -o-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: -ms-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1);
+      height: 2px;
+    }
+
+    input[type=range]:focus {
+      outline: none;
+    }
+
+    input[type=range]::-moz-range-track {
+      -moz-appearance: none;
+      background: rgba(59, 173, 227, 1);
+      background: -moz-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59, 173, 227, 1)), color-stop(25%, rgba(87, 111, 230, 1)), color-stop(51%, rgba(152, 68, 183, 1)), color-stop(100%, rgba(255, 53, 127, 1)));
+      background: -webkit-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: -o-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: -ms-linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      background: linear-gradient(45deg, rgba(59, 173, 227, 1) 0%, rgba(87, 111, 230, 1) 25%, rgba(152, 68, 183, 1) 51%, rgba(255, 53, 127, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1);
+      height: 2px;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      border: 2px solid;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      max-width: 80px;
+      position: relative;
+      bottom: 11px;
+      background-image: #fff;
+      cursor: -webkit-grab;
+      opacity: 0.5;
+      -webkit-transition: border 1000ms ease;
+      transition: border 1000ms ease;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      -moz-appearance: none;
+      border: 2px solid;
+      border-radius: 50%;
+      height: 25px;
+      width: 25px;
+      max-width: 80px;
+      position: relative;
+      opacity: 0.5;
+      background-color: #fff;
+      cursor: -moz-grab;
+      -moz-transition: border 1000ms ease;
+      transition: border 1000ms ease;
+    }
+
+
+
+    .range.blue::-webkit-slider-thumb {
+      border-color: rgb(59, 173, 227);
+    }
+
+    .range.ltpurple::-webkit-slider-thumb {
+      border-color: rgb(87, 111, 230);
+    }
+
+    .range.purple::-webkit-slider-thumb {
+      border-color: rgb(152, 68, 183);
+    }
+
+    .range.pink::-webkit-slider-thumb {
+      border-color: rgb(255, 53, 127);
+    }
+
+    .range.blue::-moz-range-thumb {
+      border-color: rgb(59, 173, 227);
+    }
+
+    .range.ltpurple::-moz-range-thumb {
+      border-color: rgb(87, 111, 230);
+    }
+
+    .range.purple::-moz-range-thumb {
+      border-color: rgb(152, 68, 183);
+    }
+
+    .range.pink::-moz-range-thumb {
+      border-color: rgb(255, 53, 127);
+    }
+
+    input[type=range]::-webkit-slider-thumb:active {
+      cursor: -webkit-grabbing;
+    }
+
+    input[type=range]::-moz-range-thumb:active {
+      cursor: -moz-grabbing;
+    }
+
+
+
+    @-webkit-keyframes neon {
+      from {
+        opacity: 0.8;
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #6666CC, 0 0 70px #FFFF99, 0 0 80px #FFFF99, 0 0 100px #FFFF99, 0 0 150px #FFFF99;
+      }
+
+      to {
+        opacity: 1;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #6666CC, 0 0 35px #FFFF99, 0 0 40px #FFFF99, 0 0 50px #FFFF99, 0 0 75px #FFFF99;
+      }
     }
 
     @-webkit-keyframes textBB {
       from {
         opacity: 0;
       }
+
       to {
         opacity: 1;
       }
     }
-
-</style>
-
- <div>
-   
-<div id="app">
-<img src="BG.jpg"  :style="`transform: rotate(${rotation}deg);position: fixed; width: 200%;height:350%;top: -50%;left: -40%;`" /> <!--  ภาพฉากที่เป็นดวงดาว-->
-  <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" /> 
-  <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`"/>
-  <img src="clipart4139313.png"  :style="`position: fixed; z-index: 4; align: bottom; width:100%; height:100%;`"/>
-  
-  <div  class="textB" style=" z-index: 4;position: fixed;top:75%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-size: 20px;  color: #FFCC33; font-family: 'Kanit', sans-serif;"> {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}   {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  </div>
-
-<input  type="range" class="range blue" :style="`z-index: 4;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`" min="2" max="1000000" step="1" v-model="speedTimeinput"> 
-
-<div  class="textA" >
-  <div v-for="(item,index) in even(lodestar) "    > <div  v-if="item.Time >=  start_timer+var_time " class="textB">  ดาวหาง{{item.name}} จะมาในวันที่ {{TimeStrFormat(item.Time)}}</div> </div>
-</div>
-<div >
-  
-  <div v-for="(item,index) in lodestar "    >
-    <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer "  :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x}px, ${((start_timer+var_time)-item.Time)*item.y}px);`"  >
-          <div  :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, yellow 30%, red 90%);`">
-         <div :style="`position:absolute; top: 8vh;  left: 2vh;   height: 10vh;  width: 10vh;  background-color: #727272;  border-radius: 50%;  overflow:hidden;z-index: 10; `"></div></div>
-    </div>
-  </div> 
-</div>
-
-<div style=";"  ></div>
-
-  <div class="textB" style=" z-index: 4; margin: 0; position: fixed;text-align: center; color: #FFCC33;top:82%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-family: 'Kanit', sans-serif; border:#fff 1px ;"  >
-    <div v-for="(item,index) in message"    > <div  v-if="item.time <=  var_time  && item.time+100000 >=  var_time" >  {{item.txt}}</div> </div>
+  </style>
+<!--this is start card detail right+top-->
+  <div class="detail title"><!---->
+      <h4>D<br>E<br>T<br>A<br>I<br>L</h4><!---->
   </div>
-</div>
- 
-</div>
-</div>
+  <div class="card">
+    <div class="products">
+      <div class="product active" product-id="1">
+        <div class="star">
+          <div class="face"><img src="img/a2.jpg" /></div>
+          <div class="back"><img src="img/a1.jpg" /></div>
+        </div>
+        <h1 class="title">ดาวหางแอตลาส</h1>
+        <p class="description">ใช้ชื่อตามธรรมเนียมของหอดูดาวที่ค้นพบว่า <b>"ATLAS"</b>
+          <br>มีชื่อตามระบบการเรียกดาวหางว่า <br><b>"C/2019 Y4"</b>
+          <br>อักษร C ที่นำหน้าชื่อดาวหาง <br>หมายถึงวงโคจรของดาวหางนั้น <br>ไม่โคจรมาซ้ำรอบในช่วงชีวิตมนุษย์
+          <br>โดยการคำนวนเบื้องต้น<br><br> ดาวหางแอตลาสมีวงโคจรรอบดวงอาทิตย์<br>นานถึง 6,025 ปี
+        </p>
+      </div>
+      <div class="product" product-id="2">
+        <div class="star">
+          <div class="face"><img src="img/b1.jpg" /></div>
+          <div class="back"><img src="img/b2.jpg" /></div>
+        </div>
+        <h1 class="title">ดาวหางอิเกยะ-เซกิ</h1>
+        <p class="description">พบโดย<b>คาโอรู อิเคยา และ ทสูโตมู เซกิ</b> <br> ในวันที่ 18 กันยายน 1965
+          <br>ดาวหางสว่างจนเห็นได้ในกลางวัน <br>ก่อนเข้าใกล้ดวงอาทิตย์<br>ดาวหางได้แตกอออกเป็น 3 ส่วน
+          <br>ตอนเช้าของปลายเดือนตุลาคม 1965 <br>ส่วนหัวดาวหางที่แตกออกมีขนาดใหญ่ 2 ส่วน<br>เรียกว่า <b>"s1-a"</b> และ
+          <b>"s2-b"</b> <br><br>ดาวหางมีคาบ 877 ปี และ 1005 ปี</p>
+      </div>
+      <div class="product" product-id="3">
+        <div class="star">
+          <div class="face"><img src="img/c1.jpg" /></div>
+          <div class="back"><img src="img/c2.jpg" /></div>
+        </div>
+        <h1 class="title">Halley's Comet /<br> Comet Halley</h1>
+        <p class="description"><b>ดาวหางแฮลลีย์ </b><br>มีชื่อตามระบบดาวหางเป็นทางการว่า <b>"1P/Halley"</b>
+          <br>ตั้งชื่อตาม <b>"เอ็ดมันด์ แฮลลีย์"<br> (Edmond Halley)
+          </b>ผู้คำนวณคาบโคจร<br>และทำนายการปรากฏได้อย่างถูกต้อง
+          <br>นับเป็นดาวหางคาบสั้นเพียงดวงเดียวที่มีความสว่างมากจนสามารถมองเห็นได้ด้วยตาเปล่า
+          <br>และหวนกลับมาให้เห็นได้อีกในช่วงชีวิตของคน<br><br>คาบโคจรรอบละประมาณ 75-76 ปี
+          <br><br>ดาวหางแฮลลีย์โคจรเข้ามายังระบบสุริยะชั้นใน<br>ครั้งล่าสุดเมื่อปี ค.ศ. 1986</p>
+      </div>
+      <div class="product" product-id="4">
+        <div class="star">
+          <div class="face"><img src="img/d1.jpg" /></div>
+          <div class="back"><img src="img/d2.jpg" /></div>
+        </div>
+        <h1 class="title">Comet West</h1>
+        <p class="description"><b>ดาวหางเวสต์</b><br> ชื่ออย่างเป็นทางการตามระบบดาวหางคือ<br> <b>C/1975 V1, 1976
+            VI</b>
+          และ <b>1975n</b>
+          <br>เป็นที่เรียกขานกันว่าเป็น <b>"ดาวหางใหญ่"</b><br>ถูกค้นพบเป็นครั้งแรกจากภาพถ่ายโดย<br> <b>ริชาร์ด เอ็ม.
+            เวสต์</b> เจ้าหน้าที่หอดูดาวยุโรปใต้ <br>ในวันที่ 10 สิงหาคม ค.ศ. 1975
+          <br>ในเดือนมีนาคม ค.ศ. 1976 <br>ดาวหางมีระดับความสว่างถึงจุดสูงสุด <br>จนสามารถเฝ้าสังเกตในเวลากลางวันได้
+          <br><br>มีคาบโคจรประมาณ 558,000 ปี</p>
+      </div>
+      <div class="product" product-id="5">
+        <div class="star">
+          <div class="face"><img src="img/e1.jpg" /></div>
+          <div class="back"><img src="img/e2.jpg" /></div>
+        </div>
+        <h1 class="title">Comet Hyakutake</h1>
+        <p class="description"><b>ดาวหางเฮียะกุตะเกะ</b><br>ชื่ออย่างเป็นทางการว่า <b>C/1996
+            B2</b><br>ค้นพบเมื่อวันที่
+          31 มกราคม 2539 <br>ซึ่งผ่านใกล้โลกในเดือนมีนาคม
+          <br>ได้รับการขนานนามว่าเป็น <br><b>"ดาวหางใหญ่ปี 1996"
+          </b><br>เป็นหนึ่งในดาวหางที่เข้าใกล้โลกที่สุด<br>ในรอบ
+          200 ปีที่ผ่านมา <br>มีความสว่างมากในท้องฟ้าราตรี <br>สามารถมองเห็นได้ทั่วโลก </b></p>
+      </div>
+      <div class="product" product-id="6">
+        <div class="star">
+          <div class="face"><img src="img/f1.jpg" /></div>
+          <div class="back"><img src="img/f2.jpg" /></div>
+        </div>
+        <h1 class="title">McNaught</h1>
+        <p class="description"><b>ดาวหางแมกนอต (C/2009 R1 McNaught)
+          </b><br>สว่างพอสำหรับการสังเกตด้วยกล้องสองตา<br>เมื่อทราบตำแหน่งที่แน่นอน <br><b>รอเบิร์ต แมกนอต (Robert H.
+            McNaught)</b>
+          <br> นักดาราศาสตร์ชาวสกอต-ออสเตรเลีย <br>ค้นพบดาวหางดวงนี้จากภาพ CCD<br>ที่ถ่ายเมื่อวันที่ 9 กันยายน
+          2552<br>
+          ระหว่างการสำรวจท้องฟ้าด้วย<br>กล้องโทรทรรศน์ชมิดต์ขนาด 0.5 เมตร </p>
+      </div>
+      <div class="product" product-id="7">
+        <div class="star">
+          <div class="face"><img src="img/g1.jpg" /></div>
+          <div class="back"><img src="img/g2.jpg" /></div>
+        </div>
+        <h1 class="title">NEOWISE</h1>
+        <p class="description"><b>ดาวหางนีโอไวส์ - C/2020 F3 (NEOWISE) </b><br>ค้นพบเมื่อวันที่ 27 มีนาคม พ.ศ.
+          2563<br>เป็นดาวหางคาบยาว มีหางที่เห็นชัดถึง 2 แฉก<br>หางส่วนบน เรียกว่า
+          <b>"หางไอออน"</b><br>มีความยาวมากกว่าหางส่วนล่าง<br> แต่จะสว่างน้อยกว่า
+          <br>หางส่วนล่าง เรียกว่า <b>"หางฝุ่น"</b> มีความฟุ้ง<br>สะท้อนกับแสงของดวงอาทิตย์ได้เป็นอย่างดี <br>NEOWISE
+          ย่อมาจาก Near-Earth Object Wide-field Infrared Survey Explorer
+          <br>เนื่องจากค้นพบจากภาพถ่าย<br>โครงการค้นหาดาวเคราะห์น้อยใกล้โลก</p>
+      </div>
+      <div class="product" product-id="7">
+        <div class="star">
+          <div class="face"><img src="img/h2.jpg" /></div>
+          <div class="back"><img src="img/h1.jpg" /></div>
+        </div>
+        <h1 class="title">Comet Hale-Bopp</h1>
+        <p class="description"><b>ดาวหางเฮล-บอพพ์</b><br>มีชื่ออย่างเป็นทางการคือ <b>"C/1995
+            O1"</b><br>ถูกค้นพบโดยนักดาราศาสตร์อเมริกัน 2 คน <br>ได้แก่ <b>อลัน เฮล (Alan Hale)</b> จาก
+          นิวเมกซิโก<br>และ <b>โธมัส บอพพ์ (Thomas Bopp)</b> <br>จากอริโซนา
+          วันที่ 23 กรกฎาคม 1995<br>ในเวลาไลเลี่ยกันแต่ต่างสถานที่<br>สามารถเฝ้าดูได้เป็นเวลานานถึง 18 เดือน
+          <br>เป็นสองเท่าจากสถิติเดิม<br>
+          ดาวหางเฮล-บอปป์มีความสว่างมากกว่า<br>ดาวหางฮัลเลย์ประมาณ 250 เท่า<br>ที่ระยะห่างเท่ากัน
+          <br>และได้รับการขนานนามให้เป็น <br><b>"ดาวหางใหญ่แห่งปี 1997"</b></p>
+      </div>
+    </div>
+    <div class="footer">
+      <a class="btn" id="prev" href="#">Prev</a>
+      <a class="btn" id="next" href="#">Next</a>
+    </div><!---->
+  </div>
+  <script>
+    $(".detail").click(function(){
+      $(".card, .detail").toggleClass("active");
+    });
+    </script>
+  <!--this is end card right+top-->
+
+
+  <div>
+
+    <div id="app">
+      <img src="BG.jpg"
+        :style="`transform: rotate(${rotation}deg);position: fixed; width: 200%;height:350%;top: -50%;left: -40%;`" />
+      <!--  ภาพฉากที่เป็นดวงดาว-->
+      <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" />
+      <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`" />
+      <img src="clipart4139313.png" :style="`position: fixed; z-index: 4; align: bottom; width:100%; height:100%;`" />
+
+      <div class="textB"
+        style=" z-index: 4;position: fixed;top:75%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-size: 20px;  color: #FFCC33; font-family: 'Kanit', sans-serif;">
+        {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}
+        {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}} </div>
+
+      <input type="range" class="range blue"
+        :style="`z-index: 4;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`"
+        min="2" max="1000000" step="1" v-model="speedTimeinput">
+
+      <div class="textA">
+        <div v-for="(item,index) in even(lodestar) ">
+          <div v-if="item.Time >=  start_timer+var_time " class="textB"> ดาวหาง{{item.name}} จะมาในวันที่
+            {{TimeStrFormat(item.Time)}}</div>
+        </div>
+      </div>
+      <div>
+
+        <div v-for="(item,index) in lodestar ">
+          <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer "
+            :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x}px, ${((start_timer+var_time)-item.Time)*item.y}px);`">
+            <div
+              :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, yellow 30%, red 90%);`">
+              <div
+                :style="`position:absolute; top: 8vh;  left: 2vh;   height: 10vh;  width: 10vh;  background-color: #727272;  border-radius: 50%;  overflow:hidden;z-index: 10; `">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style=";"></div>
+
+      <div class="textB"
+        style=" z-index: 4; margin: 0; position: fixed;text-align: center; color: #FFCC33;top:82%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-family: 'Kanit', sans-serif; border:#fff 1px ;">
+        <div v-for="(item,index) in message">
+          <div v-if="item.time <=  var_time  && item.time+100000 >=  var_time"> {{item.txt}}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
 
 
 
 
-<script >
-var d = new Date(); 
-var start_time = d.getTime();//Return the number of milliseconds since 1970/01/01:
+  <script>
+    var d = new Date();
+    var start_time = d.getTime();//Return the number of milliseconds since 1970/01/01:
 
-  let app = new  Vue({
-  el: '#app',
-  data :{
-    //start_timer :Math.floor(1608854400-(60*60*24)*6),/*(start_time/1000+25200+(60*60*24)*49), */
-    start_timer :Math.floor(start_time/1000+25200)  ,
-    time:start_time,
-    speedTimeinput:1,
-    speedTimeoutput:1,
-    var_time:0,//เก็บค่าเวลา
-       rotation:0, 
-       speedloop:10,//250  //ความเร็วในการลูป  รอบ/วินาที
-       speedTime: 0.01, //ความเร็วเวลาที่อยู่ในลูป  1 วินาที   วินาที/รอบ
-       speedrotation: 0.000001141552511415525 ,//ความเร็วในการหมุน  1 วินาที = 0.000001141552511415525 องศา เพราะ 1 ปี = 360  องศา
-       
-       lodestar:[{name:"เดอะฟูล" /*ชื่อดาวหาง*/, Time:(start_time/1000+25400  )/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 0.5 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit: 31536000/*รอบโคจร*/,sX:100/* จุดเริ่มเเกนX*/},
-       {name:"แอตลาส", Time:(start_time/1000+60445800) , x: 0.5, y: 0.5 , Orbit: 61579000,sX:250},
-       {name:"อิเคยา-ซาง", Time:(start_time/1000+315360000*22) , x: 0.2, y: 0.8 , Orbit: 3153600*22,sX:20},
-       {name:"แฮลลีย์", Time:(start_time/1000+23450000) , x: 4, y: 0.4 , Orbit: 2360200000,sX:1},
-       {name:"เวสต์", Time:(start_time/1000+3155400*452) , x: 0.5, y: 0.6 , Orbit: 3153600*42,sX:125}
-     ],
+    let app = new Vue({
+      el: '#app',
+      data: {
+        //start_timer :Math.floor(1608854400-(60*60*24)*6),/*(start_time/1000+25200+(60*60*24)*49), */
+        start_timer: Math.floor(start_time / 1000 + 25200),
+        time: start_time,
+        speedTimeinput: 1,
+        speedTimeoutput: 1,
+        var_time: 0,//เก็บค่าเวลา
+        rotation: 0,
+        speedloop: 10,//250  //ความเร็วในการลูป  รอบ/วินาที
+        speedTime: 0.01, //ความเร็วเวลาที่อยู่ในลูป  1 วินาที   วินาที/รอบ
+        speedrotation: 0.000001141552511415525,//ความเร็วในการหมุน  1 วินาที = 0.000001141552511415525 องศา เพราะ 1 ปี = 360  องศา
 
-       message: [{txt:'สวัสดีผู้เริ่มต้น ถ้าคุณรู้สึกว่าเวลามันผ่านไปอย่างๆช้าๆมันช่างน่าเบื่อ คุณลองเลื่อนเเทบด้านลองเพิ่อเร่งเวลาดูสิ',time:-10000},{txt:'เวลาจะผ่านไปเร็วขึ้น เเต่ทุกสิ่งก็จะเร็วไปตามเวลาเช่นกัน',time:-10000},{txt:'ตามจริงเเล้ว ดาวหางแอตลาสจะไม่โคจรมาซ้ำรอบในช่วงชีวิตมนุษย์ ',time:60445800}
-       ,{txt:'กฎของ​เวลา​ คือ… มันจะไม่ย้อนกลับ',time:100000} ,{txt:'เราวิ่งไล่ตามไปกับ เวลา แต่เวลามักนำหน้าเราเสมอ',time:500000},{txt:'ที่จริงเเล้ว ดาวหางแอตลาสถูกค้นพบเมื่อวันที่ 28 ธันวาคม พ.ศ. 2562',time:1000000},{txt:'เมื่อดาวหางเข้าใกล้ดวงอาทิตย์มากเท่าใด ก็จะยิ่งสว่างมากขึ้น',time:4000000},{txt:'ดาวหางประกอบด้วยฝุ่นและน้ำแข็งสกปรก',time:5000000},{txt:'แม้หางจะเป็นเอกลักษณ์ของดาวหาง แต่ดาวหางบางดวงก็เป็นดาวหางไร้หาง',time:6000000},{txt:'ชื่อของดาวหางมักตั้งชื่อตามผู้ค้นพบหรือผู้คำนวณวงโคจรได้ถูกต้องเป็นคนแรก',time:7000000},{txt:'นักดาราศาสตร์แบ่งดาวหางออกเป็น 2 ประเภท คือ ดาวหางคาบวงโคจรยาว และดาวหางคาบวงโคจรสั้น',time:8000000},{txt:'ดาวหางที่เคยพบว่ามีหางมากที่สุดคือ ดาวหางโชซู ที่ค้นพบใน พ.ศ. 2283 มีหางไม่น้อยกว่า 6 หาง',time:9000000}],
+        lodestar: [{ name: "เดอะฟูล" /*ชื่อดาวหาง*/, Time: (start_time / 1000 + 25400)/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 0.5 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit: 31536000/*รอบโคจร*/, sX: 100/* จุดเริ่มเเกนX*/ },
+        { name: "แอตลาส", Time: (start_time / 1000 + 60445800), x: 0.5, y: 0.5, Orbit: 61579000, sX: 250 },
+        { name: "อิเคยา-ซาง", Time: (start_time / 1000 + 315360000 * 22), x: 0.2, y: 0.8, Orbit: 3153600 * 22, sX: 20 },
+        { name: "แฮลลีย์", Time: (start_time / 1000 + 23450000), x: 4, y: 0.4, Orbit: 2360200000, sX: 1 },
+        { name: "เวสต์", Time: (start_time / 1000 + 3155400 * 452), x: 0.5, y: 0.6, Orbit: 3153600 * 42, sX: 125 }
+        ],
+
+        message: [{ txt: 'สวัสดีผู้เริ่มต้น ถ้าคุณรู้สึกว่าเวลามันผ่านไปอย่างๆช้าๆมันช่างน่าเบื่อ คุณลองเลื่อนเเทบด้านลองเพิ่อเร่งเวลาดูสิ', time: -10000 }, { txt: 'เวลาจะผ่านไปเร็วขึ้น เเต่ทุกสิ่งก็จะเร็วไปตามเวลาเช่นกัน', time: -10000 }, { txt: 'ตามจริงเเล้ว ดาวหางแอตลาสจะไม่โคจรมาซ้ำรอบในช่วงชีวิตมนุษย์ ', time: 60445800 }
+          , { txt: 'กฎของ​เวลา​ คือ… มันจะไม่ย้อนกลับ', time: 100000 }, { txt: 'เราวิ่งไล่ตามไปกับ เวลา แต่เวลามักนำหน้าเราเสมอ', time: 500000 }, { txt: 'ที่จริงเเล้ว ดาวหางแอตลาสถูกค้นพบเมื่อวันที่ 28 ธันวาคม พ.ศ. 2562', time: 1000000 }, { txt: 'เมื่อดาวหางเข้าใกล้ดวงอาทิตย์มากเท่าใด ก็จะยิ่งสว่างมากขึ้น', time: 4000000 }, { txt: 'ดาวหางประกอบด้วยฝุ่นและน้ำแข็งสกปรก', time: 5000000 }, { txt: 'แม้หางจะเป็นเอกลักษณ์ของดาวหาง แต่ดาวหางบางดวงก็เป็นดาวหางไร้หาง', time: 6000000 }, { txt: 'ชื่อของดาวหางมักตั้งชื่อตามผู้ค้นพบหรือผู้คำนวณวงโคจรได้ถูกต้องเป็นคนแรก', time: 7000000 }, { txt: 'นักดาราศาสตร์แบ่งดาวหางออกเป็น 2 ประเภท คือ ดาวหางคาบวงโคจรยาว และดาวหางคาบวงโคจรสั้น', time: 8000000 }, { txt: 'ดาวหางที่เคยพบว่ามีหางมากที่สุดคือ ดาวหางโชซู ที่ค้นพบใน พ.ศ. 2283 มีหางไม่น้อยกว่า 6 หาง', time: 9000000 }],
 
       },
-  watch:{  
-        time: function (x) {this.rotation -= this.speedrotation*this.speedTime*this.speedTimeoutput; this.rotation %= 360},//ตัวทำให้หมุน
-        speedTimeinput: function(x) {if (this.speedTimeinput <= 300000 ) {this.speedTimeoutput = this.speedTimeinput } 
-        else if (this.speedTimeinput <= 600000) {this.speedTimeoutput = this.speedTimeinput*50 } 
-       /* else if (this.speedTimeinput == 1000000) {this.speedTimeoutput = this.speedTimeinput**2 } */
-        else {this.speedTimeoutput = this.speedTimeinput*100}},
+      watch: {
+        time: function (x) { this.rotation -= this.speedrotation * this.speedTime * this.speedTimeoutput; this.rotation %= 360 },//ตัวทำให้หมุน
+        speedTimeinput: function (x) {
+          if (this.speedTimeinput <= 300000) { this.speedTimeoutput = this.speedTimeinput }
+          else if (this.speedTimeinput <= 600000) { this.speedTimeoutput = this.speedTimeinput * 50 }
+          /* else if (this.speedTimeinput == 1000000) {this.speedTimeoutput = this.speedTimeinput**2 } */
+          else { this.speedTimeoutput = this.speedTimeinput * 100 }
+        },
       },
-  methods: {
-    getsec: function(a){return Math.floor((a)%60) },
-    getminutes: function(s){return Math.floor((s)/60%60) },
-    gethour: function(c){return Math.floor((c)/3600%24) },
-    getday: function(v){return Math.floor((v)/(60*60*24)) },
-    getyeartime: function(b){ return Math.floor((this.getday(b)/365.25))+1970 },
-    getmonthtime: function(n){ ans = (this.getday(n)-( Math.floor(this.getday(n)/365.25)*365 + Math.floor(this.getyeartime(n)-1970)/4)   ) ;
-      if (ans - 31 > 0) {ans -= 31; //1
-        if (ans - (28+(this.getyeartime(n)%4 == 0)) > 0) {ans -= (28+(this.getyeartime(n)%4 == 0));
-          if (ans - 31 > 0) {ans -= 31;//3
-            if (ans - 30 > 0) {ans -= 30;//4
-              if (ans - 31 > 0) {ans -= 31;//5
-                if (ans - 30 > 0) {ans -= 30;//6
-                  if (ans - 31 > 0) {ans -= 31;//7
-                    if (ans - 31 > 0) {ans -= 31;//8
-                      if (ans - 30 > 0) {ans -= 30;//9
-                        if (ans - 31 > 0) {ans -= 31;//10
-                          if (ans - 30 > 0) {//11
-                            
-                            return 12//12
-                              
-                            } else {return 11 }
-                          } else {return 10 }
-                        } else {return "09" }
-                      } else {return "08" }
-                    } else {return "07" }
-                  } else {return "06" }
-                } else {return "05" }
-            } else {return "04" }
-          } else {return "03" }
-        } else {return "02" }
-      } else {return "01" }
-     },
-    getdaytime: function(m){ ans_d = (this.getday(m)-( Math.floor(this.getday(m)/365.25)*365 + Math.floor((this.getyeartime(m)-1970)/4))  );
-      if (this.getmonthtime(m) == 1) {return ans_d}
-      if (this.getmonthtime(m) == 2) {return ans_d-31}
-      if (this.getmonthtime(m) == 3) {return ans_d-31 - 28}
-      if (this.getmonthtime(m) == 4) {return ans_d-31*2 - 28}
-      if (this.getmonthtime(m) == 5) {return ans_d-31*2 -30 - 28}
-      if (this.getmonthtime(m) == 6) {return ans_d-31*3 -30 - 28}
-      if (this.getmonthtime(m) == 7) {return   ans_d-31*3 -30*2 - 28}
-      if (this.getmonthtime(m) == 8) {return   ans_d-31*4 -30*2 - 28}
-      if (this.getmonthtime(m) == 9) {return   ans_d-31*5 -30*2 - 28}
-      if (this.getmonthtime(m) == 10) {return  ans_d-31*5 -30*3 - 28}
-      if (this.getmonthtime(m) == 11) {return  ans_d-31*6 -30*3 - 28}
-      if (this.getmonthtime(m) == 12) {return  ans_d-31*6 -30*4 - 28}
+      methods: {
+        getsec: function (a) { return Math.floor((a) % 60) },
+        getminutes: function (s) { return Math.floor((s) / 60 % 60) },
+        gethour: function (c) { return Math.floor((c) / 3600 % 24) },
+        getday: function (v) { return Math.floor((v) / (60 * 60 * 24)) },
+        getyeartime: function (b) { return Math.floor((this.getday(b) / 365.25)) + 1970 },
+        getmonthtime: function (n) {
+          ans = (this.getday(n) - (Math.floor(this.getday(n) / 365.25) * 365 + Math.floor(this.getyeartime(n) - 1970) / 4));
+          if (ans - 31 > 0) {
+            ans -= 31; //1
+            if (ans - (28 + (this.getyeartime(n) % 4 == 0)) > 0) {
+              ans -= (28 + (this.getyeartime(n) % 4 == 0));
+              if (ans - 31 > 0) {
+                ans -= 31;//3
+                if (ans - 30 > 0) {
+                  ans -= 30;//4
+                  if (ans - 31 > 0) {
+                    ans -= 31;//5
+                    if (ans - 30 > 0) {
+                      ans -= 30;//6
+                      if (ans - 31 > 0) {
+                        ans -= 31;//7
+                        if (ans - 31 > 0) {
+                          ans -= 31;//8
+                          if (ans - 30 > 0) {
+                            ans -= 30;//9
+                            if (ans - 31 > 0) {
+                              ans -= 31;//10
+                              if (ans - 30 > 0) {//11
+
+                                return 12//12
+
+                              } else { return 11 }
+                            } else { return 10 }
+                          } else { return "09" }
+                        } else { return "08" }
+                      } else { return "07" }
+                    } else { return "06" }
+                  } else { return "05" }
+                } else { return "04" }
+              } else { return "03" }
+            } else { return "02" }
+          } else { return "01" }
+        },
+        getdaytime: function (m) {
+          ans_d = (this.getday(m) - (Math.floor(this.getday(m) / 365.25) * 365 + Math.floor((this.getyeartime(m) - 1970) / 4)));
+          if (this.getmonthtime(m) == 1) { return ans_d }
+          if (this.getmonthtime(m) == 2) { return ans_d - 31 }
+          if (this.getmonthtime(m) == 3) { return ans_d - 31 - 28 }
+          if (this.getmonthtime(m) == 4) { return ans_d - 31 * 2 - 28 }
+          if (this.getmonthtime(m) == 5) { return ans_d - 31 * 2 - 30 - 28 }
+          if (this.getmonthtime(m) == 6) { return ans_d - 31 * 3 - 30 - 28 }
+          if (this.getmonthtime(m) == 7) { return ans_d - 31 * 3 - 30 * 2 - 28 }
+          if (this.getmonthtime(m) == 8) { return ans_d - 31 * 4 - 30 * 2 - 28 }
+          if (this.getmonthtime(m) == 9) { return ans_d - 31 * 5 - 30 * 2 - 28 }
+          if (this.getmonthtime(m) == 10) { return ans_d - 31 * 5 - 30 * 3 - 28 }
+          if (this.getmonthtime(m) == 11) { return ans_d - 31 * 6 - 30 * 3 - 28 }
+          if (this.getmonthtime(m) == 12) { return ans_d - 31 * 6 - 30 * 4 - 28 }
 
 
-    },
-    TimeStrFormat: function(l){return this.getdaytime(l)+"/"+this.getmonthtime(l)+"/"+this.getyeartime(l)+"   "+this.gethour(l)+":"+this.getminutes(l)+':'+this.getsec(l)+'' },
-    TimeMain_getsec: function(){return this.getsec(this.start_timer+this.var_time) },
-    TimeMain_getminutes: function(){return this.getminutes(this.start_timer+this.var_time) },
-    TimeMain_gethour: function(){return this.gethour(this.start_timer+this.var_time) },
-    TimeMain_getyeartime:  function(){ return this.getyeartime(this.start_timer+this.var_time)},
-    TimeMain_getmonthtime: function(){ return this.getmonthtime(this.start_timer+this.var_time)},
-    TimeMain_getdaytime:   function(){ return this.getdaytime(this.start_timer+this.var_time) },
-    speedup() {
-      if (this.speedTime <= 6) {this.speedTime += 0.02;}
-      console.log(this.speedTime);
+        },
+        TimeStrFormat: function (l) { return this.getdaytime(l) + "/" + this.getmonthtime(l) + "/" + this.getyeartime(l) + "   " + this.gethour(l) + ":" + this.getminutes(l) + ':' + this.getsec(l) + '' },
+        TimeMain_getsec: function () { return this.getsec(this.start_timer + this.var_time) },
+        TimeMain_getminutes: function () { return this.getminutes(this.start_timer + this.var_time) },
+        TimeMain_gethour: function () { return this.gethour(this.start_timer + this.var_time) },
+        TimeMain_getyeartime: function () { return this.getyeartime(this.start_timer + this.var_time) },
+        TimeMain_getmonthtime: function () { return this.getmonthtime(this.start_timer + this.var_time) },
+        TimeMain_getdaytime: function () { return this.getdaytime(this.start_timer + this.var_time) },
+        speedup() {
+          if (this.speedTime <= 6) { this.speedTime += 0.02; }
+          console.log(this.speedTime);
 
-    },
-  speeddown() {
-      if (this.speedTime >= 0.03) {this.speedTime -= 0.02;};
-      console.log(this.speedTime);
-    },
-    even: function(arr) {
-      // Set slice() to avoid to generate an infinite loop!
-      return arr.slice().sort(function(a, b) {
-        return a.Time - b.Time;
-      });
-    }
-  }
-})
-var checkOrbitLodestar = 0;
-  setInterval(function timespeed(){//ลูป
-    if (1) {app.time++;app.var_time += app.speedTime*app.speedTimeoutput ;
-      checkOrbitLodestar +=app.speedTime*app.speedTimeoutput ;
+        },
+        speeddown() {
+          if (this.speedTime >= 0.03) { this.speedTime -= 0.02; };
+          console.log(this.speedTime);
+        },
+        even: function (arr) {
+          // Set slice() to avoid to generate an infinite loop!
+          return arr.slice().sort(function (a, b) {
+            return a.Time - b.Time;
+          });
+        }
+      }
+    })
+    var checkOrbitLodestar = 0;
+    setInterval(function timespeed() {//ลูป
+      if (1) {
+        app.time++; app.var_time += app.speedTime * app.speedTimeoutput;
+        checkOrbitLodestar += app.speedTime * app.speedTimeoutput;
         //console.log(app.time);
-        if (checkOrbitLodestar /5592000  > 1 ) {
+        if (checkOrbitLodestar / 5592000 > 1) {
           checkOrbitLodestar = 0;
           for (var i = 0; i < app.lodestar.length; i++) {
-            if (app.lodestar[i].Time < app.var_time+ app.start_timer) {app.lodestar[i].Time += app.lodestar[i].Orbit} 
+            if (app.lodestar[i].Time < app.var_time + app.start_timer) { app.lodestar[i].Time += app.lodestar[i].Orbit }
           }
-        
+
         }
-    }
-      
-    },app.speedloop) 
+      }
+
+    }, app.speedloop)
 
 
-</script>>
+  </script>>
 </body>
+
 </html>

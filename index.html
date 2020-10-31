@@ -350,8 +350,8 @@
 
       <div class="textA">
         <div v-for="(item,index) in even(lodestar) ">
-          <div v-if="item.Time >=  start_timer+var_time " class="textB"> ดาวหาง{{item.name}} จะมาในวันที่
-            {{TimeStrFormat(item.Time)}}</div>
+          <div v-if="item.Time >=  start_timer+var_time " class="textB"> ดาวหาง{{item.name}} จะมาในอีก
+         {{Math.floor((getday(item.Time-var_time)/365)) }}ปี {{Math.floor((getday(item.Time-var_time)%365)/30) }}เดือน {{Math.floor((getday(item.Time-var_time)%365)/30) }}วัน {{gethour(item.Time-var_time) }}ชั่วโมง {{getminutes(item.Time-var_time)}}นาที</div>
         </div>
       </div>
       <div>

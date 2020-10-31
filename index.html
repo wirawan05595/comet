@@ -198,7 +198,7 @@
   
   <div v-for="(item,index) in lodestar "    >
     <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer "  :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x}px, ${((start_timer+var_time)-item.Time)*item.y}px);`"  >
-          <div  :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, yellow 30%, red 90%);`">
+          <div  :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, ${item.c}30%, #fff 90%);`">
          <div :style="`position:absolute; top: 8vh;  left: 2vh;   height: 10vh;  width: 10vh;  background-color: #727272;  border-radius: 50%;  overflow:hidden;z-index: 10; `"></div></div>
     </div>
   </div> 
@@ -235,11 +235,11 @@ var start_time = d.getTime();//Return the number of milliseconds since 1970/01/0
        speedTime: 0.01, //ความเร็วเวลาที่อยู่ในลูป  1 วินาที   วินาที/รอบ
        speedrotation: 0.000001141552511415525 ,//ความเร็วในการหมุน  1 วินาที = 0.000001141552511415525 องศา เพราะ 1 ปี = 360  องศา
        
-       lodestar:[{name:"เดอะฟูล" /*ชื่อดาวหาง*/, Time:(start_time/1000+25400  )/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 0.5 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit: 31536000/*รอบโคจร*/,sX:100/* จุดเริ่มเเกนX*/},
-       {name:"แอตลาส", Time:(start_time/1000+60445800) , x: 0.5, y: 0.5 , Orbit: 61579000,sX:250},
-       {name:"อิเคยา-ซาง", Time:(start_time/1000+315360000*22) , x: 0.2, y: 0.8 , Orbit: 3153600*22,sX:20},
-       {name:"แฮลลีย์", Time:(start_time/1000+23450000) , x: 4, y: 0.4 , Orbit: 2360200000,sX:1},
-       {name:"เวสต์", Time:(start_time/1000+3155400*452) , x: 0.5, y: 0.6 , Orbit: 3153600*42,sX:125}
+       lodestar:[{name:"เดอะฟูล" /*ชื่อดาวหาง*/, Time:(start_time/1000+25400  )/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 0.5 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit: 31536000/*รอบโคจร*/,sX:100/* จุดเริ่มเเกนX*/,c:'yellow'},
+       {name:"แอตลาส", Time:(start_time/1000+60445800) , x: 0.5, y: 0.5 , Orbit: 61579000,sX:250,c:'blue'},
+       {name:"อิเคยา-ซาง", Time:(start_time/1000+315360000*22) , x: 0.2, y: 0.8 , Orbit: 3153600*22,sX:20,c:'#090'},
+       {name:"แฮลลีย์", Time:(start_time/1000+23450000) , x: 4, y: 0.4 , Orbit: 2360200000,sX:1,c:'#000'},
+       {name:"เวสต์", Time:(start_time/1000+3155400*452) , x: 0.5, y: 0.6 , Orbit: 3153600*42,sX:125,c:'E3D896'}
      ],
 
        message: [{txt:'สวัสดีผู้เริ่มต้น ถ้าคุณรู้สึกว่าเวลามันผ่านไปอย่างๆช้าๆมันช่างน่าเบื่อ คุณลองเลื่อนเเทบด้านลองเพิ่อเร่งเวลาดูสิ',time:-10000},{txt:'เวลาจะผ่านไปเร็วขึ้น เเต่ทุกสิ่งก็จะเร็วไปตามเวลาเช่นกัน',time:-10000},{txt:'ตามจริงเเล้ว ดาวหางแอตลาสจะไม่โคจรมาซ้ำรอบในช่วงชีวิตมนุษย์ ',time:60445800}

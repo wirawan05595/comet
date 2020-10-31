@@ -12,13 +12,7 @@
 	position: fixed;
 	opacity: 0.7;
 }
-.BG{
-	transform: rotate(${rotation}deg);
-	position: fixed;
-	width: 180%;
-	top: -50%;
-	left: -40%;
-}
+
 .Display_time{
 	z-index: 4;
 	position: fixed;

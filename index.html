@@ -204,7 +204,90 @@
         opacity: 1;
       }
     }
+    .wrapper {
+  position: relative;
+  margin: 0 auto;
+  margin: 0; position: fixed;
+  text-align: center; 
+  top:95%; 
+  left: 50%; 
+  margin-right: -50%; 
+}
+.wrapper .circle {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: auto;
+  -webkit-transform: scale(1, 1);
+          transform: scale(1, 1);
+}
+.wrapper .circle.pulse {
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation: pulse 2s infinite;
+          animation: pulse 2s infinite;
+  background-color: #fff;
+  opacity: 0.2;
+}
+.clock{
+  cursor: pointer;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+}
+.wrapper .clock {
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.wrapper .clock:hover {
+  -webkit-transform: scale(1.2, 1.2);
+          transform: scale(1.2, 1.2);
+}
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  25% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  50% {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
 
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  25% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  50% {
+    -webkit-transform: scale(1.2, 1.2);
+            transform: scale(1.2, 1.2);
+  }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+}
   </style>
 <!--this is start card detail right+top-->
   <div class="detail title"><!---->
@@ -331,14 +414,11 @@
     });
     </script>
   <!--this is end card right+top-->
-  <div class="wrapper">
-    <button>
-      Reset Speed! 
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+  <div class="wrapper" style="z-index: 1000;">
+    <div class="circle pulse"></div>
+    <div class="circle">
+      <img class="clock" src="img/clock.png">
+    </div>
   </div>
 
   <div>

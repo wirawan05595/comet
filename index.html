@@ -443,7 +443,7 @@
 
   <div>
 
-    <div id="app">
+    <div id="app" style="width: 100%; height: 100%;">
       <div class="wrapper" style="z-index: 1000;">
           <div class="circle pulse">
           <img class="clock" src="img/clock.png" v-on:click="speedTimeinput = 1">
@@ -454,15 +454,15 @@
       <!--  ภาพฉากที่เป็นดวงดาว-->
       <img src="vbvb.png" :style=" `z-index: 3; top: -10%;left: -18%;position: fixed;    opacity: 0.7;`" />
       <img src="vbvb2.png" :style="`z-index: 3; top: -10%;right: -25%;position: fixed;    opacity: 0.7;`" />
-      <img src="clipart4139313.png" :style="`position: fixed; z-index: 4; align: bottom; width:100%; height:100%;`" />
+      <img src="clipart4139313.png" :style="`position: fixed; z-index: 6; align: bottom; width:100%; height:100%;`" />
 
       <div class="textB"
-        style=" z-index: 4;position: fixed;top:85%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-size: 20px;  color: #FFCC33; font-family: 'ibm-plex-thai', sans-serif;">
+        style=" z-index: 6;position: fixed;top:85%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-size: 20px;  color: #FFCC33; font-family: 'ibm-plex-thai', sans-serif;">
         {{ nummat(TimeMain_getdaytime())}}/{{(TimeMain_getmonthtime())}}/{{nummat(TimeMain_getyeartime())}}
         {{nummat(TimeMain_gethour())}}:{{nummat(TimeMain_getminutes())}}:{{nummat(TimeMain_getsec())}}  </div>
 
       <input type="range" class="range blue"
-        :style="`z-index: 4;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`"
+        :style="`z-index: 6;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`"
         min="2" max="1000000" step="1" v-model="speedTimeinput" >
 <!-- 
         <input type="text" :style="`z-index: 4;position: fixed;top:70%;left: 10%; margin-right: -50%;   width: 50px;`"
@@ -486,8 +486,8 @@
       <div>
 
         <div v-for="(item,index) in lodestar ">
-          <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000 >=  var_time+start_timer "
-            :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x*0.001 - 200}px, ${((start_timer+var_time)-item.Time)*item.y*0.001 - 300}px);`">
+          <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000000 >=  var_time+start_timer "
+            :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x*0.001 -200}px, ${((start_timer+var_time)-item.Time)*item.y*0.001 - 300}px);z-index: 4;position: fixed;`">
             <img src="img/comet1.png" style="transform: rotate(-30deg);"> <!-- 
             <div
               :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, yellow 30%, red 90%);`">
@@ -504,7 +504,7 @@
 
 
       <div class="textSS"
-        style=" z-index: 4;font-size: 35px; margin: 0; position: fixed;text-align: center; color: #FFCC33;top:50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-family: 'Kanit', sans-serif; border:#fff 1px ;">
+        style=" z-index: 6;font-size: 35px; margin: 0; position: fixed;text-align: center; color: #FFCC33;top:50%; left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-family: 'Kanit', sans-serif; border:#fff 1px ;">
         <div v-for="(item,index) in message">
 
 
@@ -548,11 +548,10 @@
 
         lodestar: [{ name: "ดาวหางเองเคอ" /*ชื่อดาวหาง*/, Time: ((19*365+4+217)*24*60*60+ 1204*60*60*24+25500)/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 0.5 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit:  104025600/*รอบโคจร*/, sX: 00/* จุดเริ่มเเกนX*/ },
 
-        { name: "แอตลggาส", Time: (start_time/1000 + 25203), x: 0.5, y: 0.5, Orbit: 5500*365*24*60*60, sX: 0 },
-        { name: "แอตลาส", Time: (start_time / 1000 + ((5500-50)*31436000)), x: 0.5, y: 0.5, Orbit: 5500*365*24*60*60, sX: 250 },
+        { name: "แอตลาส", Time: (start_time / 1000 + ((5500-50)*31436000)), x: 0.5, y: 0.5, Orbit: 5500*365*24*60*60, sX: 0 },
         { name: "อิเคยา-ซาง", Time: (start_time / 1000 + (315360000) * 22), x: 0.2, y: 0.8, Orbit: 3153600 * 22, sX: 20 },
         { name: "แฮลลีย์", Time: (start_time / 1000 + 23450000), x: 4, y: 0.4, Orbit: 2360200000, sX: 1 },
-        { name: "เวสต์", Time: (start_time / 1000 + 3155400 * 452), x: 0.5, y: 0.6, Orbit: 558306*365*24*60*60, sX: 125 },
+        { name: "เวสต์", Time: (start_time / 1000 + 3155400 * 452), x: 0.5, y: 0.6, Orbit: 558306*365*24*60*60, sX: 5 },
         { name: "เทมเพล 1", Time: (start_time/1000+  (1-(start_time/(1750464*10**5))%1 )*175046400), x: 0.5, y: 0.6, Orbit: 175046400, sX: 1 }
         ],
 
@@ -571,7 +570,7 @@
           ,{ txt: 'ก็เหมือนกับมนุษย์บางคนนั้นหละ...', time: 260 },{ txt: 'ที่รู้ว่าเค้าไม่รักแต่ก็ยังจะ ไปวนเวียนอยู่ใกล้เค้าตลอด', time: 260 }
           ,{ txt: 'แล้วก็พวกฉันหนะ มีคาบการโคจรที่แตกต่างกันหลายแบบเลยหละ', time: 280 },{ txt: 'ตั้งแต่คาบโคจรเพียงไม่กี่ปี ไปจนถึงหลายร้อยหรือหลายพันปี', time: 280 }
           ,{ txt: 'ขณะที่ดาวหางบางดวงอาจแค่ผ่านเข้ามาถึงระบบสุริยะชั้นใน', time: 300 },{ txt: 'เพียงครั้งเดียวเท่านั้น ก่อนจะเหวี่ยงตัวเองออกไปสู่ห้วงอวกาศระหว่างดาว', time: 300 }
-          ,{ txt: 'ก็เหมือนเรื่องของเรานั้นหละที่โชคชะตา...', time: 320 },{ txt: 'ทำให้เธอนั้นผ่านเข้ามาและ เหวี่ยงเธอออกไป', time: 320 }
+          ,{ txt: 'ก็เหมือนเรื่องของเรานั้นหละที่โชคชะตา...', time: 320 },{ txt: 'ทำให้เธอนั้นผ่านเข้ามาและ เหวี่ยงเธออ อกไป', time: 320 }
           ,{ txt: 'แต่ว่า...ถึงจะเป็นระยะเวลาสั้นๆแต่มันก็...', time: 340 },{ txt: 'ตราตรึงใจฉันเหลือเกิน...', time: 340 }
           ,{ txt: 'เอ๊ะ! ฉันคงต้องไปเตรียมตัวแล้ว', time: 362 },{ txt: 'ยินดีที่ได้รู้จักนะ!', time: 360 }
           ],

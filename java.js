@@ -20,7 +20,7 @@ $(document).ready(function () {
 			productCurrentItem = productItem.first().addClass('active');
 		}
 		calcProductHeight();
-		animateContentColor();
+		//animateContentColor();
 	});
 
 	$('#prev').on('click', function (e) {
@@ -33,7 +33,7 @@ $(document).ready(function () {
 			productCurrentItem = productItem.last().addClass('active');
 		}
 		calcProductHeight();
-		animateContentColor();
+		//animateContentColor();
 	});
 
 });

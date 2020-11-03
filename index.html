@@ -2,12 +2,13 @@
 <html>
 
 <head>
-  <title></title>
+  <title>Comet</title>
   <!--
 	<link rel="stylesheet" type="text/css" href="../src/reset.css">
 	<link rel="stylesheet" type="text/css" href="lab.css">-->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
+<link rel="icon" type="image/png" href="folder\12.png" />
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
@@ -28,10 +29,13 @@
   <script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://use.typekit.net/hsj0uxt.css">
 
   <style>
-    body {
-      font-family: 'Kanit', sans-serif;
+    body 
+    {font-family: ibm-plex-thai,sans-serif;font-weight: 700;font-style: normal;
       background-image: url("BG.jpg");
     }
 
@@ -52,7 +56,7 @@
 
       z-index: 4;
       color: white;
-      font-family: 'Kanit', sans-serif;
+      font-family: 'ibm-plex-thai', sans-serif;
     }
 
     .textB {
@@ -417,15 +421,16 @@
     });
     </script>
   <!--this is end card right+top-->
-  <div class="wrapper" style="z-index: 1000;">
-    <div class="circle pulse">
-      <img class="clock" src="img/clock.png">
-    </div>
-  </div>
+  
 
   <div>
 
     <div id="app">
+      <div class="wrapper" style="z-index: 1000;">
+          <div class="circle pulse">
+          <img class="clock" src="img/clock.png" v-on:click="speedTimeinput = 1">
+          </div>
+      </div>
       <img src="BG.jpg"
         :style="`transform: rotate(${rotation}deg);position: fixed; width: 200%;height:350%;top: -50%;left: -40%;`" />
       <!--  ภาพฉากที่เป็นดวงดาว-->
@@ -434,17 +439,17 @@
       <img src="clipart4139313.png" :style="`position: fixed; z-index: 4; align: bottom; width:100%; height:100%;`" />
 
       <div class="textB"
-        style=" z-index: 4;position: fixed;top:85%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-size: 20px;  color: #FFCC33; font-family: 'Kanit', sans-serif;">
-        {{TimeMain_getdaytime()}}/{{TimeMain_getmonthtime()}}/{{TimeMain_getyeartime()}}
-        {{TimeMain_gethour()}}:{{TimeMain_getminutes()*"0"+TimeMain_getminutes()}}:{{TimeMain_getsec()}}  {{start_timer}} </div>
+        style=" z-index: 4;position: fixed;top:85%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%); font-size: 20px;  color: #FFCC33; font-family: 'ibm-plex-thai', sans-serif;">
+        {{ nummat(TimeMain_getdaytime())}}/{{(TimeMain_getmonthtime())}}/{{nummat(TimeMain_getyeartime())}}
+        {{nummat(TimeMain_gethour())}}:{{nummat(TimeMain_getminutes())}}:{{nummat(TimeMain_getsec())}}  </div>
 
       <input type="range" class="range blue"
         :style="`z-index: 4;position: fixed;top:90%;left: 50%; margin-right: -50%; transform: translate(-50%, -50%);  width: 500px;`"
-        min="2" max="1000000" step="1" v-model="speedTimeinput">
+        min="2" max="1000000" step="1" v-model="speedTimeinput" >
 
       <div class="textA">
         <div v-for="(item,index) in even(lodestar) ">
-          <div v-if="item.Time >=  start_timer+var_time " class="textB"> ดาวหาง{{item.name}} จะมาในอีก
+          <div v-if="item.Time >=  start_timer+var_time " class="textB"> ดาวหาง{{item.name}} จะมาในอีก 
          {{(Math.floor((getday(item.Time-(start_timer+var_time ))/365))) }}ปี {{nummat(Math.floor((getday(item.Time-(start_timer+var_time))%365)/30)) }}เดือน {{nummat(Math.floor((getday(item.Time-(start_timer+var_time ))%365)/30)) }}วัน {{nummat(gethour(item.Time-(start_timer+var_time ))) }}ชั่วโมง {{nummat(getminutes(item.Time-(start_timer+var_time)))}}นาที</div>
         </div>
       </div>

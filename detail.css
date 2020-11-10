@@ -72,8 +72,9 @@
     font-size: 24px;
 }
 .description ,.title{
+    text-align: left;
     position: initial;
-    width: 250px;
+    width: auto;
     height: auto;
 }
 .card.active{

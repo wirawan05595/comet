@@ -25,6 +25,8 @@
 <script src="java.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <body>
+  <!-- setInterval(()=> {if(document.querySelectorAll('.textB')[1].innerText == ' ดาวหางแฮลลีย์ จะมาในอีก 0 Y 00 M 00 D 00 : 08'){document.querySelector('.clock').click()}}, 100)-->
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/vuetify@1.5.14/dist/vuetify.min.css" rel="stylesheet" />
@@ -488,7 +490,12 @@
         <div v-for="(item,index) in lodestar ">
           <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000000 >=  var_time+start_timer "
             :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x*0.001 -200}px, ${((start_timer+var_time)-item.Time)*item.y*0.001 - 300}px);z-index: 4;position: fixed;`">
-            <img src="img/comet1.png" style="transform: rotate(-30deg);"> <!-- 
+            <img v-if="item.name == 'ดาวหางเองเคอ'" src="img/comet1.png" style="transform: rotate(-30deg);">
+            <img v-if="item.name == 'แอตลาส'" src="img/comet2.png" style="transform: rotate(-30deg);">
+            <img v-if="item.name == 'อิเคยาซาง'" src="img/comet3.png" style="transform: rotate(-30deg);">
+            <img v-if="item.name == 'แฮลลีย์'" src="img/comet4.png" style="transform: rotate(-30deg);">
+            <img v-if="item.name == 'เวสต์'" src="img/comet5.png" style="transform: rotate(-30deg);">
+            <img v-if="item.name == 'เทมเพลวัน'" src="img/comet6.png" style="transform: rotate(-30deg);"> <!-- 
             <div
               :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, yellow 30%, red 90%);`">
               <div
@@ -561,12 +568,11 @@
 
         lodestar: [{ name: "ดาวหางเองเคอ" /*ชื่อดาวหาง*/, Time: ((19*365+4+217)*24*60*60+ 1204*60*60*24+25500)/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 0.5 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit:  104025600/*รอบโคจร*/, sX: 00/* จุดเริ่มเเกนX*/ },
 
-        { name: "แอตลาส", Time: (start_time / 1000 + ((5500-50)*31436000)), x: 0.5, y: 0.5, Orbit: 5500*365*24*60*60, sX: 0 },
-        { name: "อิเคยาซาง", Time: (start_time / 1000 + (315360000) * 22), x: 0.2, y: 0.8, Orbit: 3153600 * 22, sX: 20 },
-        { name: "แฮลลีย์", Time: (start_time / 1000 + 23450000), x: 4, y: 0.4, Orbit: 2360200000, sX: 1 },
+        { name: "แอตลาส", Time: (start_time / 1000 + ((5500-50)*31436000)), x: 0.02, y: 0.1, Orbit: 5500*365*24*60*60, sX: 0 },
+        { name: "อิเคยาซาง", Time: (start_time / 1000 + (315360000) * 22), x: 0.2, y: 0.2, Orbit: 3153600 * 22, sX: 20 },
+        { name: "แฮลลีย์", Time: (start_time / 1000 + 23450000), x: 0.1, y: 0.4, Orbit: 2360200000, sX: 1 },
         { name: "เวสต์", Time: (start_time / 1000 + 3155400 * 452), x: 0.5, y: 0.6, Orbit: 558306*365*24*60*60, sX: 5 },
-        { name: "เทมเพลวัน", Time: (start_time/1000+  (1-(start_time/(1750464*10**5))%1 )*175046400), x: 0.5, y: 0.6, Orbit: 175046400, sX: 1 },
-         {name: "วัน", Time: (start_time/1000+ 25202), x: 0.5, y: 0.6, Orbit: 175046400, sX: 1 }
+        { name: "เทมเพลวัน", Time: (start_time/1000+  (1-(start_time/(1750464*10**5))%1 )*175046400), x: 0.5, y: 0.06, Orbit: 175046400, sX: 1 }
         ],
 
         A: { ดาวหางเองเคอ : [{txt: 'ดาวหางที่เธอกำลังเห็นอยู่นั้นคือ', time: 0},
@@ -595,8 +601,7 @@
               ,{txt: 'ก็เปรียบเหมือนความรักที่แรกๆ เราจะกลายเป็นดาวหางเวสต์สำหรับคนที่เรารัก', time:   40},{txt: 'เรามักจะได้รับความสนใจ มีแสงสว่างในตัวเอง เป็นสิ่งสำคัญสำในชีวิตเธอ...', time:  40 }
               ,{txt: 'แต่เมื่อเวลาผ่านเลยไป...ดาวหางเวสต์ดวงนี้ได้กลายเป็นแค่ดาวหางธรรมดา', time:   60},{txt: 'ไม่มีแสงสว่างในตัวเอง ไม่ได้รับความสนใจ ไม่ใช่สิ่งสำคัญอีกต่อไป', time:  60 }
               ,{txt: 'และดาวหางเวสต์เป็นดาวหางคาบยาว การคำนวณประเมินว่าดาวหางมีคาบโคจรประมาณ 558,000 ปีเลยนะ', time: 80  }],
-            เทมเพลวัน : [{txt: 'ดาวหางที่เธอกำลังเห็นอยู่นั้นคือ', time:0},{txt: 'เทมเพลวัน (Tempel1)', time:0} ,{txt: 'เทมเพล 1 เป็นดาวหางครอบครัวจูปิเตอร์เป็นระยะที่ค้นพบโดยวิลเฮล์มเทมเปิลในปี 1867', time: 20  },{txt: 'มันโคจรรอบดวงอาทิตย์ทุก ๆ 5.5', time: 20  }],
-          วัน : [{txt: 'ดาวหางที่เธอกหกดำลังเห็นอยู่นั้นคือ', time:0}]
+            เทมเพลวัน : [{txt: 'ดาวหางที่เธอกำลังเห็นอยู่นั้นคือ', time:0},{txt: 'เทมเพลวัน (Tempel1)', time:0} ,{txt: 'เทมเพล 1 เป็นดาวหางครอบครัวจูปิเตอร์เป็นระยะที่ค้นพบโดยวิลเฮล์มเทมเปิลในปี 1867', time: 20  },{txt: 'มันโคจรรอบดวงอาทิตย์ทุก ๆ 5.5', time: 20  }]
           },
 
         message: [{ txt: 'สวัสดี ผู้เริ่มต้น คุณรู้จักฉันไหม', time: 0 }, { txt: 'คุณอาจจะรู้จักฉัน...ว่าเป็นแค่เพียงฝุ่นและน้ำแข็ง', time: 20 }
@@ -742,7 +747,6 @@
       }
 
     }, app.speedloop)
-
 
   </script>>
 </body>

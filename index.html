@@ -490,12 +490,12 @@
         <div v-for="(item,index) in lodestar ">
           <div v-if="item.Time <=  start_timer+var_time   &&  item.Time+40000000 >=  var_time+start_timer "
             :style="`transform:translate(${((start_timer+var_time)-item.Time)*item.x*0.001 -200}px, ${((start_timer+var_time)-item.Time)*item.y*0.001 - 300}px);z-index: 4;position: fixed;`">
-            <img v-if="item.name == 'ดาวหางเองเคอ'" src="img/comet1.png" style="transform: rotate(-30deg);">
-            <img v-if="item.name == 'แอตลาส'" src="img/comet2.png" style="transform: rotate(-30deg);">
-            <img v-if="item.name == 'อิเคยาซาง'" src="img/comet3.png" style="transform: rotate(-30deg);">
-            <img v-if="item.name == 'แฮลลีย์'" src="img/comet4.png" style="transform: rotate(-30deg);">
-            <img v-if="item.name == 'เวสต์'" src="img/comet5.png" style="transform: rotate(-30deg);">
-            <img v-if="item.name == 'เทมเพลวัน'" src="img/comet6.png" style="transform: rotate(-30deg);"> <!-- 
+            <img v-if="item.name == 'ดาวหางเองเคอ'" src="img/comet1.png" style="transform: rotate(-0deg);">
+            <img v-if="item.name == 'แอตลาส'" src="img/comet2.png" style="transform: rotate(-0deg);">
+            <img v-if="item.name == 'อิเคยาซาง'" src="img/comet3.png" style="transform: rotate(-0deg);">
+            <img v-if="item.name == 'แฮลลีย์'" src="img/comet4.png" style="transform: rotate(-0deg);">
+            <img v-if="item.name == 'เวสต์'" src="img/comet5.png" style="transform: rotate(-0deg);">
+            <img v-if="item.name == 'เทมเพลวัน'" src="img/comet6.png" style="transform: rotate(-0deg);"> <!-- 
             <div
               :style="` border-radius: 100% 0 60% 40% / 60% 0 100% 40%;  transform:rotate(-90deg);  position:absolute;  width: 20vh;  height: 20vh;  z-index: 0;  top: 20vh; transform:rotate(-90deg); left: 20vh; background: -webkit-linear-gradient(left bottom, white, yellow 30%, red 90%);`">
               <div
@@ -568,7 +568,7 @@
 
         lodestar: [{ name: "ดาวหางเองเคอ" /*ชื่อดาวหาง*/, Time: ((19*365+4+217)*24*60*60+ 1204*60*60*24+25500)/*เวลาที่ต้องออก*/, x: 1/*การเคลื่อนที่ในเเนวเเกน X*/, y: 0.5 /*การเคลื่อนที่ในเเนวเเกน Y*/, Orbit:  104025600/*รอบโคจร*/, sX: 00/* จุดเริ่มเเกนX*/ },
 
-        { name: "แอตลาส", Time: (start_time / 1000 + ((5500-50)*31436000)), x: 0.02, y: 0.1, Orbit: 5500*365*24*60*60, sX: 0 },
+        { name: "แอตลาส", Time: (start_time / 1000 + ((5500-50)*31436000)), x: 0.25, y: 0.1, Orbit: 5500*365*24*60*60, sX: 0 },
         { name: "อิเคยาซาง", Time: (start_time / 1000 + (315360000) * 22), x: 0.2, y: 0.2, Orbit: 3153600 * 22, sX: 20 },
         { name: "แฮลลีย์", Time: (start_time / 1000 + 23450000), x: 0.1, y: 0.4, Orbit: 2360200000, sX: 1 },
         { name: "เวสต์", Time: (start_time / 1000 + 3155400 * 452), x: 0.5, y: 0.6, Orbit: 558306*365*24*60*60, sX: 5 },
